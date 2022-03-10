@@ -13,7 +13,7 @@ const runCommand = command => {
 }
 
 const repoName = process.argv[2];
-const gitCheckoutCommand = `git clone --depth 1 git@gitlab.dataon.com:react-library/master-custom.git ${repoName}`;
+const gitCheckoutCommand = `git clone --depth 1 git@github.com:ugiispoyo/Micro-Id.git ${repoName}`;
 const installDepsCommand = `cd ${repoName} && npm install`;
 
 console.log(`Cloning the repository with name ${repoName}`);
