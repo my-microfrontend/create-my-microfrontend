@@ -1,6 +1,6 @@
 {
   "name": "create-my-microfrontend",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Micro Frontend Framework",
   "main": "index.js",
   "bin": "bin/cli.js",
