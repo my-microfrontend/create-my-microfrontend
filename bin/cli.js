@@ -21,7 +21,7 @@ const checkedOut = runCommand(gitCheckoutCommand);
 
 if(!checkedOut) process.exit(-1);
 
-const removeOther = `cd ${repoName} && rm -rf bin && rm .npmignore && git remote rm origin`;
+const removeOther = `cd ${repoName} && rm -rf bin && rm .npmignore && rm -rf .git`;
 const execRemoveOther = runCommand(removeOther);
 if(!execRemoveOther) process.exit(-1);
 
