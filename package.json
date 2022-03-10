@@ -1,5 +1,5 @@
 {
-  "name": "micro-id",
+  "name": "@ugiispoyo/micro-id",
   "version": "1.0.0",
   "description": "Micro Frontend Framework",
   "main": "index.js",
