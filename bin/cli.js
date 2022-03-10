@@ -21,6 +21,10 @@ const checkedOut = runCommand(gitCheckoutCommand);
 
 if(!checkedOut) process.exit(-1);
 
+const removeBin = runCommand(`cd ${repoName}`);
+
+if(!removeBin) process.exit(-1);
+
 // console.log(`Installing dependencies for ${repoName}`);
 // const installeDeps = runCommand(installDepsCommand);
 
