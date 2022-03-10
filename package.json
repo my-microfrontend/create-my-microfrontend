@@ -1,6 +1,6 @@
 {
   "name": "@ugiispoyo/micro-id",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Micro Frontend Framework",
   "main": "index.js",
   "bin": "bin/cli.js",
