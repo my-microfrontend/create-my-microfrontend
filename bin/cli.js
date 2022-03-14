@@ -26,7 +26,7 @@ const opsys = process.platform;
 if (opsys == "darwin" || opsys == "linux") {
     removeOther = `cd ${repoName} && rm -rf bin && rm .npmignore && git remote rm origin`;
 } else if (opsys == "win32" || opsys == "win64") {
-    removeOther = `cd ${repoName} && del bin && del .npmignore && git remote rm origin`;
+    removeOther = `cd ${repoName} && rmdir bin && del .npmignore && git remote rm origin`;
 } 
 const execRemoveOther = runCommand(removeOther);
 if(!execRemoveOther) process.exit(-1);
