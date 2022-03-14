@@ -12,7 +12,7 @@ const runCommand = command => {
     return true;
 }
 
-const repoName = process.argv[2];
+const repoName = process.argv[2] || "micro";
 const gitCheckoutCommand = `git clone --depth 1 https://github.com/ugiispoyo/Micro-Id.git ${repoName}`;
 // const installDepsCommand = `cd ${repoName} && npm install`;
 
@@ -21,7 +21,13 @@ const checkedOut = runCommand(gitCheckoutCommand);
 
 if(!checkedOut) process.exit(-1);
 
-const removeOther = `cd ${repoName} && rm -rf bin && rm .npmignore && git remote rm origin`;
+let removeOther;
+const opsys = process.platform;
+if (opsys == "darwin" || opsys == "linux") {
+    removeOther = `cd ${repoName} && rm -rf bin && rm .npmignore && git remote rm origin`;
+} else if (opsys == "win32" || opsys == "win64") {
+    removeOther = `cd ${repoName} && del bin && del .npmignore && git remote rm origin`;
+} 
 const execRemoveOther = runCommand(removeOther);
 if(!execRemoveOther) process.exit(-1);
 
