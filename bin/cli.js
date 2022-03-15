@@ -47,5 +47,6 @@ if (!execRemoveOther) process.exit(-1);
 
 // if(!installeDeps) process.exit(-1);
 
-console.log("Congratulations!");
-console.log(`cd ${repoName} && npm start `);
+console.log("🎊 Congratulations! 🎊");
+console.log("Happy coding 😃");
+console.log(`cd ${repoName} && npm start`);
