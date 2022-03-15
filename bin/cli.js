@@ -1,27 +1,26 @@
 #!/usr/bin/env node
 
-const { execSync, exec } = require("child_process");
+const { execSync } = require("child_process");
 
-const runCommand = (command, type = "linux") => {
+const runCommand = (command) => {
     try {
-        if (type === "win") {
-            exec(command, (err, stdout, stderr) => {
-                if (err) {
-                    console.error(`Failed to execute ${err}`);
-                    return false;
-                }
-            });
-        } else {
-            execSync(`${command}`, { stdio: "inherit" });
-        }
+        execSync(`${command}`, { stdio: "inherit" });
     } catch (e) {
-        console.error(`Failed to execute ${command}`, e);
+        console.error(`Failed to execute ${command}`, e.message);
         return false;
     }
     return true;
 };
 
 const repoName = process.argv[2] || "micro";
+let appFramework = "react-app";
+if (
+    process.argv[3] && (process.argv[3] === "--react" ||
+    process.argv[3] === "--vue")
+) {
+    appFramework = process.argv[3].slice(2, process.argv[3].length) + "-app";
+}
+console.log(appFramework);
 const gitCheckoutCommand = `git clone --depth 1 https://github.com/ugiispoyo/Micro-Id.git ${repoName}`;
 // const installDepsCommand = `cd ${repoName} && npm install`;
 
@@ -33,12 +32,12 @@ if (!checkedOut) process.exit(-1);
 let removeOther, execRemoveOther;
 const opsys = process.platform;
 if (opsys == "darwin" || opsys == "linux") {
-    removeOther = `cd ${repoName} && rm -rf bin && rm .npmignore && git remote rm origin`;
+    // removeOther = `cd ${repoName} && rm -rf bin && rm .npmignore && git remote rm origin`;
+    removeOther = `cd ${repoName} && mv ${appFramework}/* ../${repoName} && rm -rf bin && rm .npmignore && git remote rm origin`;
     execRemoveOther = runCommand(removeOther);
-    if (!execRemoveOther) process.exit(-1);
 } else if (opsys == "win32" || opsys == "win64") {
-    removeOther = `cd ${repoName} && rmdir "bin" && del .npmignore && git remote rm origin`;
-    execRemoveOther = runCommand(removeOther, "win");
+    removeOther = `cd ${repoName} && rmdir /S /q "bin" && del .npmignore && git remote rm origin`;
+    execRemoveOther = runCommand(removeOther);
 }
 
 if (!execRemoveOther) process.exit(-1);
@@ -49,4 +48,4 @@ if (!execRemoveOther) process.exit(-1);
 // if(!installeDeps) process.exit(-1);
 
 console.log("Congratulations!");
-console.log(`cd ${repoName} && npm start`);
+console.log(`cd ${repoName} && npm start `);
