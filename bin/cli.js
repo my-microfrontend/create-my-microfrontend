@@ -49,4 +49,4 @@ if (!execRemoveOther) process.exit(-1);
 
 console.log("🎊 Congratulations! 🎊");
 console.log("Happy coding 😃");
-console.log(`cd ${repoName} && npm start`);
+console.log(`➡️ cd ${repoName} && npm start ⬅️`);
