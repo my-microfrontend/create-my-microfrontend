@@ -35,7 +35,7 @@ if (opsys == "darwin" || opsys == "linux") {
     removeOther = `cd ${repoName} && rm package.json && mv ${appFramework}/* ../${repoName} && rm -rf react-app && rm -rf vue-app && rm -rf bin && rm .npmignore && git remote rm origin`;
     execRemoveOther = runCommand(removeOther);
 } else if (opsys == "win32" || opsys == "win64") {
-    removeOther = `cd ${repoName} && del package.json && mv ${appFramework}/* ../${repoName} && rmdir /S /q react-app && rmdir /S /q vue-app && rmdir /S /q "bin" && del .npmignore && git remote rm origin`;
+    removeOther = `cd ${repoName} && del package.json && mv ${appFramework}/* ../${repoName} && rmdir /S /q "react-app" && rmdir /S /q "vue-app" && rmdir /S /q "bin" && del .npmignore && git remote rm origin`;
     execRemoveOther = runCommand(removeOther);
 }
 
