@@ -22,7 +22,6 @@ if (
 }
 console.log(appFramework);
 const gitCheckoutCommand = `git clone --depth 1 https://github.com/ugiispoyo/Micro-Id.git ${repoName}`;
-// const installDepsCommand = `cd ${repoName} && npm install`;
 
 console.log(`Cloning the repository with name ${repoName}`);
 const checkedOut = runCommand(gitCheckoutCommand);
@@ -36,12 +35,13 @@ if (opsys == "darwin" || opsys == "linux") {
     removeOther = `cd ${repoName} && mv ${appFramework}/* ../${repoName} && rm -rf bin && rm .npmignore && git remote rm origin`;
     execRemoveOther = runCommand(removeOther);
 } else if (opsys == "win32" || opsys == "win64") {
-    removeOther = `cd ${repoName} && rmdir /S /q "bin" && del .npmignore && git remote rm origin`;
+    removeOther = `cd ${repoName} && mv ${appFramework}/* ../${repoName} && rmdir /S /q "bin" && del .npmignore && git remote rm origin`;
     execRemoveOther = runCommand(removeOther);
 }
 
 if (!execRemoveOther) process.exit(-1);
 
+// const installDepsCommand = `cd ${repoName} && npm install`;
 // console.log(`Installing dependencies for ${repoName}`);
 // const installeDeps = runCommand(installDepsCommand);
 
