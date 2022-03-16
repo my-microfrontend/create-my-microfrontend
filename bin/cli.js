@@ -4,7 +4,7 @@ const { execSync } = require("child_process");
 
 const runCommand = (command) => {
     try {
-        execSync(`${command}`, { stdio: "inherit" });
+        execSync(`${command}`, { stdio: "ignore" });
     } catch (e) {
         console.error(`Failed to execute ${command}`, e.message);
         return false;
@@ -23,7 +23,7 @@ if (
 console.log(`Create ${appFramework} ⬅️`);
 const gitCheckoutCommand = `git clone --depth 1 https://github.com/ugiispoyo/Micro-Id.git ${repoName}`;
 
-console.log(`Cloning the repository with name ${repoName}`);
+console.log(`⏳ Cloning the repository with name ${repoName}..`);
 const checkedOut = runCommand(gitCheckoutCommand);
 
 if (!checkedOut) process.exit(-1);
