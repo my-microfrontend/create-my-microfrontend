@@ -21,30 +21,25 @@ if (
     appFramework = process.argv[3].slice(2, process.argv[3].length) + "-app";
 }
 console.log(`Create ${appFramework} ⬅️`);
-const gitCheckoutCommand = `git clone --depth 1 https://github.com/ugiispoyo/Micro-Id.git ${repoName}`;
+const gitCheckoutCommand = `git clone \
+  --depth 1  \
+  --filter=blob:none  \
+  --sparse \
+  https://github.com/ugiispoyo/Micro-Id.git ${repoName} \
+;
+cd ${repoName}
+git sparse-checkout init --cone
+git sparse-checkout set ${appFramework}`;
 
-console.log(`⏳ Cloning the repository with name ${repoName}..`);
+console.log(`⏳ Cloning the repository with name "${repoName}"..`);
 const checkedOut = runCommand(gitCheckoutCommand);
 
 if (!checkedOut) process.exit(-1);
 
-let removeOther, execRemoveOther;
-const opsys = process.platform;
-if (opsys == "darwin" || opsys == "linux") {
-    // removeOther = `cd ${repoName} && rm -rf bin && rm .npmignore && git remote rm origin`;
-    removeOther = `cd ${repoName} && rm package.json && mv ${appFramework}/* ../${repoName} && rm -rf react-app && rm -rf vue-app && rm -rf bin && rm .npmignore && git remote rm origin`;
-} else if (opsys == "win32" || opsys == "win64") {
-    removeOther = `cd ${repoName} && del package.json && cd ${appFramework} && for /D %d in (*) do move /Y "%d" "../" && for /R %d in (*) do move /Y "%d" "../" && cd .. && rmdir /S /q "react-app" && rmdir /S /q "vue-app" && rmdir /S /q "bin" && del .npmignore && git remote rm origin`;
-}
-
-execRemoveOther = runCommand(removeOther);
-if (!execRemoveOther) process.exit(-1);
-
-// const installDepsCommand = `cd ${repoName} && npm install`;
-// console.log(`Installing dependencies for ${repoName}`);
-// const installeDeps = runCommand(installDepsCommand);
-
-// if(!installeDeps) process.exit(-1);
+// const opsys = process.platform;
+// if (opsys == "darwin" || opsys == "linux") {
+// } else if (opsys == "win32" || opsys == "win64") {
+// }
 
 console.log("🎊 🎊 🎊 Congratulations! 🎊 🎊 🎊");
 console.log("😃 Happy coding 😃");

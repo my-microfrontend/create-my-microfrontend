@@ -1,9 +1,11 @@
 {
   "name": "create-my-microfrontend",
-  "version": "0.0.18",
+  "version": "0.0.19",
   "description": "Micro Frontend Framework",
   "main": "index.js",
-  "bin": "bin/cli.js",
+  "bin": {
+    "create-my-microfrontend": "bin/cli.js"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
