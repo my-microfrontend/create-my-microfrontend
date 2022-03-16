@@ -32,30 +32,12 @@ let removeOther, execRemoveOther;
 const opsys = process.platform;
 if (opsys == "darwin" || opsys == "linux") {
     // removeOther = `cd ${repoName} && rm -rf bin && rm .npmignore && git remote rm origin`;
-    removeOther = `cd ${repoName} 
-        && rm package.json 
-        && mv ${appFramework}/* ../${repoName} 
-        && rm -rf react-app 
-        && rm -rf vue-app 
-        && rm -rf bin 
-        && rm .npmignore 
-        && git remote rm origin`;
-    execRemoveOther = runCommand(removeOther);
+    removeOther = `cd ${repoName} && rm package.json && mv ${appFramework}/* ../${repoName} && rm -rf react-app && rm -rf vue-app && rm -rf bin && rm .npmignore && git remote rm origin`;
 } else if (opsys == "win32" || opsys == "win64") {
-    removeOther = `cd ${repoName} 
-        && del package.json 
-        && cd ${appFramework}
-        && for /D %d in (*) do move /Y "%d" "../" 
-        && for /R %d in (*) do move /Y "%d" "../" 
-        && cd ..
-        && rmdir /S /q "react-app" 
-        && rmdir /S /q "vue-app" 
-        && rmdir /S /q "bin" 
-        && del .npmignore 
-        && git remote rm origin`;
-    execRemoveOther = runCommand(removeOther);
+    removeOther = `cd ${repoName} && del package.json && cd ${appFramework} && for /D %d in (*) do move /Y "%d" "../" && for /R %d in (*) do move /Y "%d" "../" && cd .. && rmdir /S /q "react-app" && rmdir /S /q "vue-app" && rmdir /S /q "bin" && del .npmignore && git remote rm origin`;
 }
 
+execRemoveOther = runCommand(removeOther);
 if (!execRemoveOther) process.exit(-1);
 
 // const installDepsCommand = `cd ${repoName} && npm install`;
