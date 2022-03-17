@@ -70,7 +70,7 @@ if (opsys == "darwin" || opsys == "linux") {
     pathNow = execSync("pwd").toString().trim()
     copyPackage = `cp ${pathMicro}/package.json ${pathNow}`
 } else if (opsys == "win32" || opsys == "win64") {
-    pathNow = execSync("pwd").toString().trim()
+    pathNow = execSync("cd").toString().trim()
     copyPackage = `copy ${pathMicro}\package.json ${pathNow}`
 }
 runCopy = runCommand(copyPackage);
