@@ -64,6 +64,7 @@ if (!checkPackage()) {
 const pathMicro = path.join(execSync("npm root -g").toString().trim(), "create-my-microfrontend");
 
 /* Copy package */
+console.log("Is processing..")
 const opsys = process.platform;
 let copyPackage, runCopy, pathNow;
 if (opsys == "darwin" || opsys == "linux") {
@@ -71,8 +72,9 @@ if (opsys == "darwin" || opsys == "linux") {
     copyPackage = `cp ${pathMicro}/package.json ${pathNow}`
 } else if (opsys == "win32" || opsys == "win64") {
     pathNow = execSync("cd").toString().trim()
-    copyPackage = `copy ${pathMicro}\package.json ${pathNow}`
+    copyPackage = `xcopy /s ${pathMicro}\\package.json ${pathNow}`
 }
+
 runCopy = runCommand(copyPackage);
 if(!runCopy) process.exit(-1);
 
