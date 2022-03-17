@@ -5,7 +5,7 @@
 // const https = require("https");
 // const path = require("path");
 // const fs = require("fs");
-const { execSync } = require("child_process");
+import { execSync } from "child_process";
 const currentNodeVersion = process.versions.node;
 const semver = currentNodeVersion.split(".");
 const major = semver[0];
@@ -170,13 +170,14 @@ if (!checkPackage()) {
 // if (!runCopy) process.exit(-1);
 
 /* Install package */
-console.log("Installation package..");
+console.log("\nInstallation package..\n");
 const npmInstall = runCommand(`npm i`);
 if (!npmInstall) {
     console.error("Failed to install package");
     process.exit(-1);
 }
 
-const { init } = require("./cli.js");
+// const { init } = require("./cli.js");
+import { init } from "./cli.js";
 
 init();

@@ -2,15 +2,15 @@
 
 "use strict";
 
-const fs = require("fs");
-const chalk = require("chalk");
-const { execSync, spawn } = require("child_process");
+import fs from "fs";
+import chalk from "chalk";
+import { execSync, spawn } from "child_process";
 
 /* Run Command */
 function runCommand(command) {
     try {
         // execSync(`${command}`, { stdio: 'inherit' });
-        execSync(`${command}`, { stdio: 'ignore' });
+        execSync(`${command}`, { stdio: "ignore" });
         // const child = spawn(command, args, { stdio: 'inherit'})
     } catch (e) {
         console.error(`Failed to execute ${command}`, e.message);
@@ -29,7 +29,6 @@ function validChar(s) {
 }
 
 function init() {
-    
     // console.log("Installation process..")
     // const runInstallPackage = `npm install`;
     // if (!runCommand(runInstallPackage)) {
@@ -37,34 +36,55 @@ function init() {
     //     process.exit(-1);
     // }
 
-    const repoName = process.argv[2] || "micro";
+    const nameProject = process.argv[2] || "micro";
     /* Check folder exists */
-    if (fs.existsSync(repoName)) {
-        console.error(`Project name ${chalk.red(repoName)} is exist please use a different name!`);
+    if (fs.existsSync(nameProject)) {
+        console.error(
+            `${chalk.bold(
+                `Project name ${chalk.red(
+                    nameProject
+                )} is exist please use a different name!`
+            )}\n`
+        );
         process.exit(-1);
     }
 
     /* Check valid name */
-    if (!validChar(repoName)) {
-        console.error(`Project name ${chalk.red(repoName)} cannot contain uppercase letters`);
+    if (!validChar(nameProject)) {
+        console.error(
+            `${chalk.bold(
+                `Project name ${chalk.red(
+                    nameProject
+                )} cannot contain uppercase letters!\n`
+            )}`
+        );
         process.exit(-1);
     }
 
     let appFramework = process.argv[3];
     const validApp = ["--react"];
     /* Check valid type app template */
-    if (typeof appFramework !== 'undefined') {
+    if (typeof appFramework !== "undefined") {
         if (!validApp.includes(appFramework)) {
-            console.error(`Invalid type app ${chalk.red(appFramework)} you can use ${chalk.blue("--react")}`);
+            console.error(
+                `${chalk.bold(
+                    `Invalid type app ${chalk.red(
+                        appFramework
+                    )}, you can use ${chalk.blue("--react")}!\n`
+                )}`
+            );
             process.exit(-1);
         }
     } else {
         appFramework = "--react";
     }
     appFramework = appFramework.slice(2, appFramework.length) + "-app";
-    console.log(`Create ${appFramework} ⬅️`);
-    const gitCheckoutCommand = `git clone --depth 1 --filter=blob:none --sparse https://github.com/ugiispoyo/Micro-Id.git ${repoName} && cd ${repoName} && git sparse-checkout init --cone && git sparse-checkout set ${appFramework}`;
-    console.log(`⏳ Cloning process "${repoName}"..`);
+    console.log(
+        `Create project with name ${chalk.bold(
+            chalk.blue(nameProject)
+        )} & with template ${chalk.bold(chalk.blue(appFramework))}..\n`
+    );
+    const gitCheckoutCommand = `git clone --depth 1 --filter=blob:none --sparse https://github.com/ugiispoyo/Micro-Id.git ${nameProject} && cd ${nameProject} && git sparse-checkout init --cone && git sparse-checkout set ${appFramework}`;
     const checkedOut = runCommand(gitCheckoutCommand);
     if (!checkedOut) process.exit(-1);
 
@@ -72,12 +92,14 @@ function init() {
     // if (opsys == "darwin" || opsys == "linux") {
     // } else if (opsys == "win32" || opsys == "win64") {
     // }
-    console.log("🎊 🎊 🎊 Congratulations! 🎊 🎊 🎊");
-    console.log("😃 Happy coding 😃");
-    console.log("");
-    console.log(`cd ${repoName} && npm start`);
-    console.log("");
+    console.log("Congratulations!!!\n");
+    console.log("Happy coding!");
+    console.log(
+        `\n${chalk.bold(chalk.cyan(`cd ${nameProject}`))} && ${chalk.bold(
+            chalk.cyan(`npm start`)
+        )}\n\n`
+    );
 }
 
-// export { init };
-module.exports = { init }
+export { init };
+// module.exports = { init };

@@ -1,6 +1,7 @@
 {
   "name": "create-my-microfrontend",
-  "version": "0.0.33",
+  "version": "0.0.34",
+  "type": "module",
   "description": "Micro Frontend Framework",
   "keywords": [
     "create-my-microfrontend",
