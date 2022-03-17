@@ -138,6 +138,7 @@ if (opsys == "darwin" || opsys == "linux") {
 runCopy = runCommand(copyPackage);
 if (!runCopy) process.exit(-1);
 
+console.log("test check version")
 // const { init } = require("./cli.js");
 
 // init();
