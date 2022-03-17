@@ -82,7 +82,7 @@ function init() {
     console.log(
         `Create project with name ${chalk.bold(
             chalk.blue(nameProject)
-        )} & with template ${chalk.bold(chalk.blue(appFramework))}..\n`
+        )} & with template ${chalk.bold(chalk.blue(appFramework))}\n`
     );
     const gitCheckoutCommand = `git clone --depth 1 --filter=blob:none --sparse https://github.com/ugiispoyo/Micro-Id.git ${nameProject} && cd ${nameProject} && git sparse-checkout init --cone && git sparse-checkout set ${appFramework}`;
     const checkedOut = runCommand(gitCheckoutCommand);
