@@ -65,15 +65,16 @@ const pathMicro = path.join(execSync("npm root -g").toString().trim(), "create-m
 
 /* Copy package */
 const opsys = process.platform;
-let copyPackage, runCopy;
+let copyPackage, runCopy, pathNow;
 if (opsys == "darwin" || opsys == "linux") {
-    copyPackage = `cp ${pathMicro}/package.json ${__dirname}`
+    pathNow = execSync("pwd").toString().trim()
+    copyPackage = `cp ${pathMicro}/package.json ${pathNow}`
 } else if (opsys == "win32" || opsys == "win64") {
-    copyPackage = `copy ${pathMicro}\package.json ${__dirname}`
+    pathNow = execSync("pwd").toString().trim()
+    copyPackage = `copy ${pathMicro}\package.json ${pathNow}`
 }
 runCopy = runCommand(copyPackage);
 if(!runCopy) process.exit(-1);
-
 
 // const { init } = require("./cli.js");
 
