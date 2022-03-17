@@ -5,6 +5,11 @@
 // const https = require("https");
 // const path = require("path");
 // const fs = require("fs");
+// const { execSync } = require("child_process");
+
+// import https from "https";
+import path from "path";
+import fs from "fs";
 import { execSync } from "child_process";
 const currentNodeVersion = process.versions.node;
 const semver = currentNodeVersion.split(".");
