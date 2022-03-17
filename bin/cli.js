@@ -21,15 +21,7 @@ if (
     appFramework = process.argv[3].slice(2, process.argv[3].length) + "-app";
 }
 console.log(`Create ${appFramework} ⬅️`);
-const gitCheckoutCommand = `git clone \
-  --depth 1  \
-  --filter=blob:none  \
-  --sparse \
-  https://github.com/ugiispoyo/Micro-Id.git ${repoName} \
-;
-cd ${repoName}
-git sparse-checkout init --cone
-git sparse-checkout set ${appFramework}`;
+const gitCheckoutCommand = `git clone --depth 1 --filter=blob:none --sparse https://github.com/ugiispoyo/Micro-Id.git ${repoName} && cd ${repoName} && git sparse-checkout init --cone && git sparse-checkout set ${appFramework}`;
 
 console.log(`⏳ Cloning the repository with name "${repoName}"..`);
 const checkedOut = runCommand(gitCheckoutCommand);
