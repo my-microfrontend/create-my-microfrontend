@@ -38,50 +38,76 @@ function runCommand(command, param, typeStdio = "ignore") {
 }
 
 /* Check latest version */
-function checkForLatestVersion() {
-    return new Promise((resolve, reject) => {
-        https
-            .get(
-                "https://registry.npmjs.org/-/package/create-my-microfrontend/dist-tags",
-                (res) => {
-                    if (res.statusCode === 200) {
-                        let body = "";
-                        res.on("data", (data) => (body += data));
-                        res.on("end", () => {
-                            resolve(JSON.parse(body).latest);
-                        });
-                    } else {
-                        reject();
-                    }
-                }
-            )
-            .on("error", () => {
-                reject();
-            });
-    });
-}
+// function checkForLatestVersion() {
+//     return new Promise((resolve, reject) => {
+//         https
+//             .get(
+//                 "https://registry.npmjs.org/-/package/create-my-microfrontend/dist-tags",
+//                 (res) => {
+//                     if (res.statusCode === 200) {
+//                         let body = "";
+//                         res.on("data", (data) => (body += data));
+//                         res.on("end", () => {
+//                             resolve(JSON.parse(body).latest);
+//                         });
+//                     } else {
+//                         reject();
+//                     }
+//                 }
+//             )
+//             .on("error", () => {
+//                 reject();
+//             });
+//     });
+// }
+// function checkVersion() {
+//     return checkForLatestVersion().then((a) => {
+//         const checkVersionLocal = execSync("npm view create-my-microfrontend version").toString().trim();
+//         if(a !== checkVersionLocal) {
+//             /* Update version create-my-microfrontend */
+//             console.log("Updating latest version...");
+//             const updateCMM = runCommand(
+//                 `npm update -g create-my-microfrontend`,
+//                 undefined,
+//                 "inherit"
+//             );
+//             if(!updateCMM) {
+//                 console.log(
+//                     'Failed to update the last version:\n' +
+//                     'You can try the manual method:\n'+
+//                     '1. npx clear-npx-cache:\n'+
+//                     '2. npm uninstall -g create-my-microfrontend:\n' +
+//                     '3. npm install -g create-my-microfrontend'
+//                 )
+//             }
+//         }
+//     });
+// }
 function checkVersion() {
-    return checkForLatestVersion().then((a) => {
-        const checkVersionLocal = execSync("npm view create-my-microfrontend version").toString().trim();
-        if(a !== checkVersionLocal) {
-            /* Update version create-my-microfrontend */
-            console.log("Updating latest version...");
-            const updateCMM = runCommand(
-                `npm update -g create-my-microfrontend`,
-                undefined,
-                "inherit"
+    const localVersion = execSync("npm list -g create-my-microfrontend version")
+        .toString()
+        .trim();
+    const repoVesion = execSync("npm view create-my-microfrontend version")
+        .toString()
+        .trim();
+    if (!localVersion.includes(repoVesion)) {
+        /* Update version create-my-microfrontend */
+        console.log("Updating latest version...");
+        const updateCMM = runCommand(
+            `npm update -g create-my-microfrontend`,
+            undefined,
+            "inherit"
+        );
+        if (!updateCMM) {
+            console.log(
+                "Failed to update the last version:\n" +
+                    "You can try the manual method:\n" +
+                    "1. npx clear-npx-cache:\n" +
+                    "2. npm uninstall -g create-my-microfrontend:\n" +
+                    "3. npm install -g create-my-microfrontend"
             );
-            if(!updateCMM) {
-                console.log(
-                    'Failed to update the last version:\n' +
-                    'You can try the manual method:\n'+
-                    '1. npx clear-npx-cache:\n'+
-                    '2. npm uninstall -g create-my-microfrontend:\n' +
-                    '3. npm install -g create-my-microfrontend'
-                )
-            }
         }
-    });
+    }
 }
 
 /* Check package */
@@ -138,7 +164,6 @@ if (opsys == "darwin" || opsys == "linux") {
 runCopy = runCommand(copyPackage);
 if (!runCopy) process.exit(-1);
 
-console.log("test check version")
 // const { init } = require("./cli.js");
 
 // init();
