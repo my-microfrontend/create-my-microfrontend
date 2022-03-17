@@ -1,6 +1,6 @@
 {
   "name": "create-my-microfrontend",
-  "version": "0.0.32",
+  "version": "0.0.33",
   "description": "Micro Frontend Framework",
   "keywords": [
     "create-my-microfrontend",
@@ -20,5 +20,8 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Ugi Ispoyo Widodo",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^5.0.1"
+  }
 }

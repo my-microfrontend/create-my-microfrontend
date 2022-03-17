@@ -2,9 +2,9 @@
 
 "use strict";
 
-const https = require("https");
-const path = require("path");
-const fs = require("fs");
+// const https = require("https");
+// const path = require("path");
+// const fs = require("fs");
 const { execSync } = require("child_process");
 const currentNodeVersion = process.versions.node;
 const semver = currentNodeVersion.split(".");
@@ -35,6 +35,12 @@ function runCommand(command, param, typeStdio = "ignore") {
         console.error(`Failed to execute ${command}`, e.message);
         return false;
     }
+}
+
+/* Check git */
+if (!runCommand("git --version")) {
+    console.error(`Please install "git" before continuing!`);
+    process.exit(-1);
 }
 
 /* Check latest version */
@@ -99,7 +105,7 @@ function checkVersion() {
             "inherit"
         );
         if (!updateCMM) {
-            console.log(
+            console.error(
                 "Failed to update the last version:\n" +
                     "You can try the manual method:\n" +
                     "1. npx clear-npx-cache:\n" +
@@ -134,36 +140,43 @@ function checkPackage() {
 }
 
 if (!checkPackage()) {
-    console.log("Sorry, something went wrong.");
+    console.error("Sorry, something went wrong.");
     process.exit(-1);
 }
-const pathMicro = path.join(
-    execSync("npm root -g").toString().trim(),
-    "create-my-microfrontend"
-);
 
 /* Copy package */
-const opsys = process.platform;
-let copyPackage, runCopy, pathNow;
-if (opsys == "darwin" || opsys == "linux") {
-    pathNow = execSync("pwd").toString().trim();
-    /* Delete package.json */
-    if (fs.existsSync("package.json")) {
-        if (!runCommand("rm package.json")) process.exit(-1);
-    }
-    copyPackage = `cp ${pathMicro}/package.json ${pathNow}`;
-} else if (opsys == "win32" || opsys == "win64") {
-    pathNow = execSync("cd").toString().trim();
-    /* Delete package.json */
-    if (fs.existsSync("package.json")) {
-        if (!runCommand("del package.json")) process.exit(-1);
-    }
-    copyPackage = `xcopy /s ${pathMicro}\\package.json ${pathNow}`;
+// const pathMicro = path.join(
+//     execSync("npm root -g").toString().trim(),
+//     "create-my-microfrontend"
+// );
+// const opsys = process.platform;
+// let copyPackage, runCopy, pathNow;
+// if (opsys == "darwin" || opsys == "linux") {
+//     pathNow = execSync("pwd").toString().trim();
+//     /* Delete package.json */
+//     if (fs.existsSync("package.json")) {
+//         if (!runCommand("rm package.json")) process.exit(-1);
+//     }
+//     copyPackage = `cp ${pathMicro}/package.json ${pathNow}`;
+// } else if (opsys == "win32" || opsys == "win64") {
+//     pathNow = execSync("cd").toString().trim();
+//     /* Delete package.json */
+//     if (fs.existsSync("package.json")) {
+//         if (!runCommand("del package.json")) process.exit(-1);
+//     }
+//     copyPackage = `xcopy /s ${pathMicro}\\package.json ${pathNow}`;
+// }
+// runCopy = runCommand(copyPackage);
+// if (!runCopy) process.exit(-1);
+
+/* Install package */
+console.log("Installation package..");
+const npmInstall = runCommand(`npm i`);
+if (!npmInstall) {
+    console.error("Failed to install package");
+    process.exit(-1);
 }
 
-runCopy = runCommand(copyPackage);
-if (!runCopy) process.exit(-1);
+const { init } = require("./cli.js");
 
-// const { init } = require("./cli.js");
-
-// init();
+init();
