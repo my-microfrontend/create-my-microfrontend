@@ -1,11 +1,21 @@
 {
   "name": "create-my-microfrontend",
-  "version": "0.0.20",
+  "version": "0.0.21",
   "description": "Micro Frontend Framework",
-  "main": "index.js",
+  "keywords": [
+    "create-my-microfrontend",
+    "create my micro frontend",
+    "my micro frontend",
+    "micro frontend",
+    "frontend"
+  ],
   "bin": {
-    "create-my-microfrontend": "bin/cli.js"
+    "create-my-microfrontend": "./index.js"
   },
+  "files": [
+    "index.js",
+    "cli.js"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
