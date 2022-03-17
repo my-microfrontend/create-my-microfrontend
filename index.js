@@ -1,7 +1,7 @@
-"use strict";
+'use strict';
 
 const path = require("path");
-const fs = require("fs");
+// const fs = require("fs");
 const { execSync } = require("child_process");
 const currentNodeVersion = process.versions.node;
 const semver = currentNodeVersion.split(".");
