@@ -145,35 +145,35 @@ if (!checkPackage()) {
 }
 
 /* Copy package */
-// const pathMicro = path.join(
-//     execSync("npm root -g").toString().trim(),
-//     "create-my-microfrontend"
-// );
-// const opsys = process.platform;
-// let copyPackage, runCopy, pathNow;
-// if (opsys == "darwin" || opsys == "linux") {
-//     pathNow = execSync("pwd").toString().trim();
-//     /* Delete package.json */
-//     if (fs.existsSync("package.json")) {
-//         if (!runCommand("rm package.json")) process.exit(-1);
-//     }
-//     copyPackage = `cp ${pathMicro}/package.json ${pathNow}`;
-// } else if (opsys == "win32" || opsys == "win64") {
-//     pathNow = execSync("cd").toString().trim();
-//     /* Delete package.json */
-//     if (fs.existsSync("package.json")) {
-//         if (!runCommand("del package.json")) process.exit(-1);
-//     }
-//     copyPackage = `xcopy /s ${pathMicro}\\package.json ${pathNow}`;
-// }
-// runCopy = runCommand(copyPackage);
-// if (!runCopy) process.exit(-1);
+const pathMicro = path.join(
+    execSync("npm root -g").toString().trim(),
+    "create-my-microfrontend"
+);
+const opsys = process.platform;
+let copyPackage, runCopy, pathNow;
+if (opsys == "darwin" || opsys == "linux") {
+    pathNow = execSync("pwd").toString().trim();
+    /* Delete package.json */
+    if (fs.existsSync("package.json")) {
+        if (!runCommand("rm package.json")) process.exit(-1);
+    }
+    copyPackage = `cp ${pathMicro}/package.json ${pathNow}`;
+} else if (opsys == "win32" || opsys == "win64") {
+    pathNow = execSync("cd").toString().trim();
+    /* Delete package.json */
+    if (fs.existsSync("package.json")) {
+        if (!runCommand("del package.json")) process.exit(-1);
+    }
+    copyPackage = `xcopy /s ${pathMicro}\\package.json ${pathNow}`;
+}
+runCopy = runCommand(copyPackage);
+if (!runCopy) process.exit(-1);
 
 /* Install package */
 console.log("\nInstallation package..\n");
 const npmInstall = runCommand(`npm i`);
 if (!npmInstall) {
-    console.error("Failed to install package");
+    console.error("Failed to install package!");
     process.exit(-1);
 }
 
