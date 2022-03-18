@@ -73,7 +73,7 @@ function init(pathNow) {
                 `${chalk.bold(
                     `Invalid type app ${chalk.red(
                         appFramework
-                    )}, you can use ${chalk.blue("--react")}!\n`
+                    )}, you can use ["${chalk.blue("--react")}"]\n`
                 )}`
             );
             process.exit(-1);
