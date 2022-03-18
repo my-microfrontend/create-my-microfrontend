@@ -18,7 +18,7 @@ function runCommand(command) {
         execSync(`${command}`, { stdio: "ignore" });
         // const child = spawn(command, args, { stdio: 'inherit'})
     } catch (e) {
-        console.error(`Failed to execute ${command}`, e.message);
+        console.error(`Failed to execute ${command}`, e.message, `\n`);
         return false;
     }
     return true;
@@ -34,15 +34,17 @@ function validChar(s) {
 }
 
 function init(pathNow) {
-
+    
     const nameProject = process.argv[2] || "micro";
+    const directoryProject = path.join(pathNow, nameProject);
+
     /* Check folder exists */
     if (fs.existsSync(nameProject)) {
         console.error(
             `${chalk.bold(
                 `Project name ${chalk.red(
                     nameProject
-                )} is exist please use a different name!`
+                )} is exist please use a different name!\n`
             )}\n`
         );
         process.exit(-1);
@@ -57,6 +59,8 @@ function init(pathNow) {
                 )} cannot contain uppercase letters!\n`
             )}`
         );
+        /* Remove Project */
+        fs.removeSync(path.join(pathNow, nameProject), (err));
         process.exit(-1);
     }
 
@@ -85,15 +89,20 @@ function init(pathNow) {
     );
     const gitCheckoutCommand = `git clone --depth 1 --filter=blob:none --sparse https://github.com/ugiispoyo/Micro-Id.git ${nameProject} && cd ${nameProject} && git sparse-checkout init --cone && git sparse-checkout set ${appFramework}`;
     const checkedOut = runCommand(gitCheckoutCommand);
-    if (!checkedOut) process.exit(-1);
+    if (!checkedOut) {
+        /* Remove Project */
+        fs.removeSync(path.join(pathNow, nameProject), (err));
+        process.exit(-1)
+    }
 
-    const directoryProject = path.join(pathNow, nameProject);
     /* Delete File */
     const execRemoveOther = runCommand(
         `cd ${nameProject} && git remote rm origin`
     );
     if (!execRemoveOther) {
-        console.error("Failed to created project!");
+        console.error("Failed to created project!\n");
+        /* Remove Project */
+        fs.removeSync(path.join(pathNow, nameProject), (err));
         process.exit(-1);
     }
     const filesNoDelete = [".git", appFramework];
@@ -109,7 +118,10 @@ function init(pathNow) {
                 }
             }
         } catch (e) {
-            console.error("Failed to created project! ", e.message);
+            /* Remove Project */
+            fs.removeSync(path.join(pathNow, nameProject), (err));
+            console.error("Failed to created project! ", e.message, '\n');
+            process.exit(-1);
         }
         
     });
@@ -133,35 +145,26 @@ function init(pathNow) {
                 if (err) throw err;
             });
         } catch (e) {
-            console.error("Failed to created project! ", e.message);
+            /* Remove Project */
+            fs.removeSync(path.join(pathNow, nameProject), (err));
+            console.error("Failed to created project! ", e.message, '\n');
+            process.exit(-1);
         }
     });
 
-    /* Move package */
-    // const directoryTemplate = path.join(directoryProject, appFramework);
-    // fs.readdir(directoryTemplate, (err, files) => {
-    //     if (err) throw err;
-
-    //     try {
-    //         for (const file of files) {
-    //             fs.moveSync(
-    //                 path.join(directoryTemplate, file),
-    //                 path.join(directoryTemplate, `../${file}`),
-    //                 (err) => {
-    //                     if (err) throw err;
-    //                 }
-    //             );
-    //         }
-    //         fs.removeSync(path.join(directoryProject, appFramework), (err) => {
-    //             if (err) throw err;
-    //         });
-    //     } catch (e) {
-    //         console.error("Failed to created project! ", e.message);
-    //     }
-    // });
+    /* Install package */
+    const installPackage = runCommand(
+        `cd ${path.join(pathNow, nameProject)} && npm install`
+    );
+    if(!installPackage) {
+        /* Remove Project */
+        fs.removeSync(path.join(pathNow, nameProject), (err));
+        console.error("Failed install the package project!\n");
+        process.exit(-1);
+    }
 
     /* Finish */
-    console.log("Congratulations!!!\n");
+    console.log("\nCongratulations!!!\n");
     console.log("Happy coding!");
     console.log(
         `\n${chalk.bold(chalk.cyan(`cd ${nameProject}`))} && ${chalk.bold(

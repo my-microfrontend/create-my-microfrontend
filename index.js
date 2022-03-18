@@ -15,7 +15,7 @@ const currentNodeVersion = process.versions.node;
 const semver = currentNodeVersion.split(".");
 const major = semver[0];
 
-console.log("Is processing..");
+console.log("\nIs processing..\n");
 if (major < 14) {
     console.error(
         "You are running Node " +
@@ -37,14 +37,14 @@ function runCommand(command, param, typeStdio = "ignore") {
             return execSync(command).toString().trim().includes(param);
         }
     } catch (e) {
-        console.error(`Failed to execute ${command}`, e.message);
+        console.error(`Failed to execute ${command}`, e.message, ' \n');
         return false;
     }
 }
 
 /* Check git */
 if (!runCommand("git --version")) {
-    console.error(`Please install "git" before continuing!`);
+    console.error(`Please install "git" before continuing!\n`);
     process.exit(-1);
 }
 
@@ -118,7 +118,7 @@ function checkVersion() {
                     "You can try the manual method:\n" +
                     "1. npx clear-npx-cache:\n" +
                     "2. npm uninstall -g create-my-microfrontend:\n" +
-                    "3. npm install -g create-my-microfrontend"
+                    "3. npm install -g create-my-microfrontend\n"
             );
         }
     }
@@ -148,7 +148,7 @@ function checkPackage() {
 }
 
 if (!checkPackage()) {
-    console.error("Sorry, something went wrong.");
+    console.error("Sorry, something went wrong.\n");
     process.exit(-1);
 }
 
@@ -160,14 +160,6 @@ if (opsys == "darwin" || opsys == "linux") {
 } else if (opsys == "win32" || opsys == "win64") {
     pathNow = execSync("cd").toString().trim();
 }
-
-/* Install package */
-// console.log("\nInstallation package..\n");
-// const npmInstall = runCommand(`npm i`);
-// if (!npmInstall) {
-//     console.error("Failed to install package!");
-//     process.exit(-1);
-// }
 
 // const { init } = require("./cli.js");
 import { init } from "./cli.js";
