@@ -1,29 +1,29 @@
 {
-  "name": "create-my-microfrontend",
-  "version": "1.0.3",
-  "type": "module",
-  "description": "Micro Frontend Framework",
-  "keywords": [
-    "create-my-microfrontend",
-    "create my micro frontend",
-    "my micro frontend",
-    "micro frontend",
-    "frontend"
-  ],
-  "bin": {
-    "create-my-microfrontend": "./index.js"
-  },
-  "files": [
-    "index.js",
-    "cli.js"
-  ],
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Ugi Ispoyo Widodo",
-  "license": "ISC",
-  "dependencies": {
-    "chalk": "^5.0.1",
-    "fs-extra": "^10.0.1"
-  }
+    "name": "create-my-microfrontend",
+    "version": "1.0.4",
+    "type": "module",
+    "description": "Micro Frontend Framework",
+    "keywords": [
+        "create-my-microfrontend",
+        "create my micro frontend",
+        "my micro frontend",
+        "micro frontend",
+        "frontend"
+    ],
+    "bin": {
+        "create-my-microfrontend": "./index.js"
+    },
+    "files": [
+        "index.js",
+        "cli.js"
+    ],
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Ugi Ispoyo Widodo",
+    "license": "ISC",
+    "dependencies": {
+        "chalk": "^5.0.1",
+        "fs-extra": "^10.0.1"
+    }
 }

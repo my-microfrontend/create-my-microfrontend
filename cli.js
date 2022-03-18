@@ -21,7 +21,7 @@ function runCommand(command, param, typeStdio = "ignore") {
             return execSync(command).toString().trim().includes(param);
         }
     } catch (e) {
-        console.error(`Failed to execute ${command}`, e.message, ' \n');
+        console.error(`Failed to execute ${command}`, e.message, " \n");
         return false;
     }
 }
@@ -36,7 +36,6 @@ function validChar(s) {
 }
 
 function init(pathNow) {
-    
     const nameProject = process.argv[2] || "micro";
     const directoryProject = path.join(pathNow, nameProject);
 
@@ -91,7 +90,7 @@ function init(pathNow) {
     const checkedOut = runCommand(gitCheckoutCommand);
     if (!checkedOut) {
         console.error("Failed to created project!\n");
-        process.exit(-1)
+        process.exit(-1);
     }
 
     /* Delete File */
@@ -115,10 +114,9 @@ function init(pathNow) {
                 }
             }
         } catch (e) {
-            console.error("Failed to created project! ", e.message, '\n');
+            console.error("Failed to created project! ", e.message, "\n");
             process.exit(-1);
         }
-        
     });
 
     /* Move Files */
@@ -140,19 +138,61 @@ function init(pathNow) {
                 if (err) throw err;
             });
         } catch (e) {
-            console.error("Failed to created project! ", e.message, '\n');
+            console.error("Failed to created project! ", e.message, "\n");
             process.exit(-1);
         }
     });
 
-    /* Install package */
+    /* Install package dependencies */
+    let listPackage = Object.keys(readWritePackageJson().dependencies)
+        .toString()
+        .replace(",", " ");
     const installPackage = runCommand(
-        `cd ${path.join(pathNow, nameProject)} && npm install`
+        `npm install ${listPackage}`,
+        undefined,
+        "inherit"
     );
-    if(!installPackage) {
-        console.error("Failed install the package project!\n");
+    if (!installPackage) {
+        console.error(`${chalk.red(`\nError install package ${listPackage}\n`)},
+                you can try with the manual method, ${chalk.bold(
+                    `npm install ${listPackage} --force`
+                )}
+            \n`);
+    }
+    /* Install package dev dependencies */
+    let listPackageDev = Object.keys(readWritePackageJson().devDependencies)
+        .toString()
+        .replace(",", " ");
+    const installPackageDev = runCommand(
+        `npm install ${listPackageDev}`,
+        undefined,
+        "inherit"
+    );
+    if (!installPackageDev) {
+        console.error(`${chalk.red(
+            `\nError install package ${listPackageDev}\n`
+        )},
+                you can try with the manual method, ${chalk.bold(
+                    `npm install ${listPackageDev} --save-dev --force`
+                )}
+            \n`);
+    }
+    const valWrite = {
+        name: nameProject,
+    };
+    let writePackage = readWritePackageJson("write", valWrite);
+    if(!writePackage) {
+        console.error(chalk.red("Failed to created the package project!\n"));
         process.exit(-1);
     }
+
+    // const installPackage = runCommand(
+    //     `cd ${path.join(pathNow, nameProject)} && npm install`
+    // );
+    // if(!installPackage) {
+    //     console.error("Failed install the package project!\n");
+    //     process.exit(-1);
+    // }
 
     /* Finish */
     console.log("\nCongratulations!!!\n");
@@ -162,6 +202,24 @@ function init(pathNow) {
             chalk.cyan(`npm start`)
         )}\n\n`
     );
+}
+
+function readWritePackageJson(type = "read", value) {
+    try {
+        let packageData = fs.readJsonSync("./package.json");
+        if (type === "write" && typeof value !== "undefined") {
+            let writeData = { ...packageData, ...value };
+            packageData = fs.writeJsonSync("./package.json", writeData);
+            return true;
+        }
+        if (!packageData) {
+            process.exit(-1);
+        }
+        return packageData;
+    } catch (e) {
+        console.error(`${chalk.red(`${e.message}\n`)}`);
+        process.exit(-1);
+    }
 }
 
 export { init, runCommand };

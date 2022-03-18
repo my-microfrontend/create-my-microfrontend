@@ -9,9 +9,10 @@
 
 // import https from "https";
 // import path from "path";
-// import fs from "fs-extra";
+import fs from "fs-extra";
 import { execSync } from "child_process";
 import { init, runCommand } from "./cli.js";
+import chalk from "chalk";
 
 const currentNodeVersion = process.versions.node;
 const semver = currentNodeVersion.split(".");
