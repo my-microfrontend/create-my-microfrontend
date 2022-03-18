@@ -101,10 +101,10 @@ function checkVersion() {
         );
         if (!updateCMM) {
             console.error(
-                "Failed to update the last version:\n" +
+                "Failed to update the last version!\n" +
                     "You can try the manual method:\n" +
-                    "1. npx clear-npx-cache:\n" +
-                    "2. npm uninstall -g create-my-microfrontend:\n" +
+                    "1. npx clear-npx-cache\n" +
+                    "2. npm uninstall -g create-my-microfrontend\n" +
                     "3. npm install -g create-my-microfrontend\n"
             );
         }
