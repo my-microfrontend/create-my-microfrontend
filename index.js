@@ -105,7 +105,8 @@ function checkVersion() {
         /* Update version create-my-microfrontend */
         console.log("Updating latest version...");
         /* Clear Cache npx */
-        runCommand("npx clear-npx-cache");
+        runCommand(`npx clear-npx-cache`);
+        runCommand(`npm uninstall -g create-my-microfrontend`);
         const updateCMM = runCommand(
             `npm update -g create-my-microfrontend`,
             undefined,
