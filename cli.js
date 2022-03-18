@@ -10,6 +10,8 @@ import { execSync } from "child_process";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const validApp = ["--react"];
+let appFramework = "";
 
 /* Run Command */
 function runCommand(command, param, typeStdio = "ignore") {
@@ -63,8 +65,7 @@ function init(pathNow) {
         process.exit(-1);
     }
 
-    let appFramework = process.argv[3];
-    const validApp = ["--react"];
+    appFramework = process.argv[3];
     /* Check valid type app template */
     if (typeof appFramework !== "undefined") {
         if (!validApp.includes(appFramework)) {
@@ -114,7 +115,9 @@ function init(pathNow) {
                 }
             }
         } catch (e) {
-            console.error("Failed to created project! ", e.message, "\n");
+            console.error(
+                chalk.red("Failed to created project! ", e.message, "\n")
+            );
             process.exit(-1);
         }
     });
@@ -138,7 +141,9 @@ function init(pathNow) {
                 if (err) throw err;
             });
         } catch (e) {
-            console.error("Failed to created project! ", e.message, "\n");
+            console.error(
+                chalk.red("Failed to created project! ", e.message, "\n")
+            );
             process.exit(-1);
         }
     });
@@ -146,9 +151,9 @@ function init(pathNow) {
     /* Install package dependencies */
     let listPackage = Object.keys(readWritePackageJson(pathNow).dependencies)
         .toString()
-        .replace(",", " ");
+        .replace(/,/g, " ");
     const installPackage = runCommand(
-        `npm install ${listPackage}`,
+        `cd ${directoryProject} && npm install ${listPackage}`,
         undefined,
         "inherit"
     );
@@ -164,9 +169,9 @@ function init(pathNow) {
         readWritePackageJson(pathNow).devDependencies
     )
         .toString()
-        .replace(",", " ");
+        .replace(/,/g, " ");
     const installPackageDev = runCommand(
-        `npm install ${listPackageDev}`,
+        `cd ${directoryProject} && npm install ${listPackageDev} --save-dev`,
         undefined,
         "inherit"
     );
@@ -188,14 +193,6 @@ function init(pathNow) {
         process.exit(-1);
     }
 
-    // const installPackage = runCommand(
-    //     `cd ${path.join(pathNow, nameProject)} && npm install`
-    // );
-    // if(!installPackage) {
-    //     console.error("Failed install the package project!\n");
-    //     process.exit(-1);
-    // }
-
     /* Finish */
     console.log("\nCongratulations!!!\n");
     console.log("Happy coding!");
@@ -208,18 +205,35 @@ function init(pathNow) {
 
 function readWritePackageJson(pathNow, type = "read", value = undefined) {
     try {
-        const fileDir = path.join(pathNow, "./package.json");
-        let packageData = fs.readJsonSync(fileDir);
+        /* "/[namProject]/[typeApp/appFramework]/package.json" */
+        const nameProject = process.argv[2] || "micro";
+        const filePath = path.join(pathNow, nameProject);
+        const fileDir = path.join(
+            path.join(filePath, appFramework),
+            "package.json"
+        );
+
+        let packageData = fs.readJsonSync(fileDir, (err) => {
+            if (err) {
+                fs.removeSync(path.join(pathNow, nameProject));
+            }
+        });
         if (type === "write" && typeof value !== "undefined") {
             let writeData = { ...packageData, ...value };
-            packageData = fs.writeJsonSync(fileDir, writeData);
+            packageData = fs.writeJsonSync(fileDir, writeData, (err) => {
+                if (err) {
+                    fs.removeSync(path.join(pathNow, nameProject));
+                }
+            });
             return true;
         }
         if (!packageData) {
             process.exit(-1);
         }
+
         return packageData;
     } catch (e) {
+        fs.removeSync(path.join(pathNow, nameProject));
         console.error(`${chalk.red(`${e.message}\n`)}`);
         process.exit(-1);
     }
