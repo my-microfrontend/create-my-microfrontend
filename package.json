@@ -1,6 +1,6 @@
 {
   "name": "create-my-microfrontend",
-  "version": "0.0.36",
+  "version": "0.0.37",
   "type": "module",
   "description": "Micro Frontend Framework",
   "keywords": [
@@ -23,6 +23,7 @@
   "author": "Ugi Ispoyo Widodo",
   "license": "ISC",
   "dependencies": {
-    "chalk": "^5.0.1"
+    "chalk": "^5.0.1",
+    "fs-extra": "^10.0.1"
   }
 }

@@ -9,7 +9,7 @@
 
 // import https from "https";
 import path from "path";
-import fs from "fs";
+import fs from "fs-extra";
 import { execSync } from "child_process";
 const currentNodeVersion = process.versions.node;
 const semver = currentNodeVersion.split(".");
@@ -104,6 +104,8 @@ function checkVersion() {
     if (!localVersion.includes(repoVesion)) {
         /* Update version create-my-microfrontend */
         console.log("Updating latest version...");
+        /* Clear Cache npx */
+        runCommand("npx clear-npx-cache");
         const updateCMM = runCommand(
             `npm update -g create-my-microfrontend`,
             undefined,

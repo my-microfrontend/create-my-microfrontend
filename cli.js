@@ -2,9 +2,14 @@
 
 "use strict";
 
-import fs from "fs";
+import fs from "fs-extra";
+import path from "path";
 import chalk from "chalk";
-import { execSync, spawn } from "child_process";
+import { fileURLToPath } from "url";
+import { execSync } from "child_process";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 /* Run Command */
 function runCommand(command) {
@@ -88,10 +93,67 @@ function init() {
     const checkedOut = runCommand(gitCheckoutCommand);
     if (!checkedOut) process.exit(-1);
 
+    /* Delete file before finish */
+    // let removeOther, execRemoveOther;
     // const opsys = process.platform;
     // if (opsys == "darwin" || opsys == "linux") {
+    //     // removeOther = `cd ${nameProject} && rm -rf bin && rm .npmignore && git remote rm origin`;
+    //     removeOther = `cd ${nameProject} && rm package.json && rm .npmignore && git remote rm origin`;
     // } else if (opsys == "win32" || opsys == "win64") {
+    //     removeOther = `cd ${nameProject} && del package.json && mv ${appFramework}/* ../${nameProject} && rmdir /S /q react-app && rmdir /S /q vue-app && rmdir /S /q "bin" && del .npmignore && git remote rm origin`;
     // }
+
+    const directoryProject = path.join(__dirname, nameProject);
+    /* Delete File */
+    const execRemoveOther = runCommand(
+        `cd ${nameProject} && git remote rm origin`
+    );
+    if (!execRemoveOther) {
+        console.error("Failed to created project!");
+        process.exit(-1);
+    }
+    const filesNoDelete = [".git", appFramework];
+    fs.readdir(directoryProject, (err, files) => {
+        if (err) throw err;
+
+        try {
+            for (const file of files) {
+                if (!filesNoDelete.includes(file)) {
+                    fs.removeSync(path.join(directoryProject, file), (err) => {
+                        if (err) throw err;
+                    });
+                }
+            }
+        } catch (e) {
+            console.error("Failed to created project! ", e.message);
+        }
+        
+    });
+
+    /* Move Files */
+    const directoryTemplate = path.join(directoryProject, appFramework);
+    fs.readdir(directoryTemplate, (err, files) => {
+        if (err) throw err;
+
+        try {
+            for (const file of files) {
+                fs.moveSync(
+                    path.join(directoryTemplate, file),
+                    path.join(directoryTemplate, `../${file}`),
+                    (err) => {
+                        if (err) throw err;
+                    }
+                );
+            }
+            fs.removeSync(path.join(directoryProject, appFramework), (err) => {
+                if (err) throw err;
+            });
+        } catch (e) {
+            console.error("Failed to created project! ", e.message);
+        }
+    });
+
+    /* Finish */
     console.log("Congratulations!!!\n");
     console.log("Happy coding!");
     console.log(
