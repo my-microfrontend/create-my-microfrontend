@@ -11,6 +11,8 @@
 // import path from "path";
 // import fs from "fs-extra";
 import { execSync } from "child_process";
+import { init, runCommand } from "./cli.js";
+
 const currentNodeVersion = process.versions.node;
 const semver = currentNodeVersion.split(".");
 const major = semver[0];
@@ -25,21 +27,6 @@ if (major < 14) {
             "Please update your version of Node."
     );
     process.exit(1);
-}
-
-/* Run Command */
-function runCommand(command, param, typeStdio = "ignore") {
-    try {
-        if (typeof param === "undefined") {
-            execSync(`${command}`, { stdio: typeStdio });
-            return true;
-        } else {
-            return execSync(command).toString().trim().includes(param);
-        }
-    } catch (e) {
-        console.error(`Failed to execute ${command}`, e.message, ' \n');
-        return false;
-    }
 }
 
 /* Check git */
@@ -162,6 +149,5 @@ if (opsys == "darwin" || opsys == "linux") {
 }
 
 // const { init } = require("./cli.js");
-import { init } from "./cli.js";
 
 init(pathNow);

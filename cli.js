@@ -12,16 +12,18 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 /* Run Command */
-function runCommand(command) {
+function runCommand(command, param, typeStdio = "ignore") {
     try {
-        // execSync(`${command}`, { stdio: 'inherit' });
-        execSync(`${command}`, { stdio: "ignore" });
-        // const child = spawn(command, args, { stdio: 'inherit'})
+        if (typeof param === "undefined") {
+            execSync(`${command}`, { stdio: typeStdio });
+            return true;
+        } else {
+            return execSync(command).toString().trim().includes(param);
+        }
     } catch (e) {
-        console.error(`Failed to execute ${command}`, e.message, `\n`);
+        console.error(`Failed to execute ${command}`, e.message, ' \n');
         return false;
     }
-    return true;
 }
 
 /* Check Valid Name Project */
@@ -162,5 +164,5 @@ function init(pathNow) {
     );
 }
 
-export { init };
+export { init, runCommand };
 // module.exports = { init };
