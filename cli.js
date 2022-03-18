@@ -144,7 +144,7 @@ function init(pathNow) {
     });
 
     /* Install package dependencies */
-    let listPackage = Object.keys(readWritePackageJson().dependencies)
+    let listPackage = Object.keys(readWritePackageJson(pathNow).dependencies)
         .toString()
         .replace(",", " ");
     const installPackage = runCommand(
@@ -160,7 +160,9 @@ function init(pathNow) {
             \n`);
     }
     /* Install package dev dependencies */
-    let listPackageDev = Object.keys(readWritePackageJson().devDependencies)
+    let listPackageDev = Object.keys(
+        readWritePackageJson(pathNow).devDependencies
+    )
         .toString()
         .replace(",", " ");
     const installPackageDev = runCommand(
@@ -180,8 +182,8 @@ function init(pathNow) {
     const valWrite = {
         name: nameProject,
     };
-    let writePackage = readWritePackageJson("write", valWrite);
-    if(!writePackage) {
+    let writePackage = readWritePackageJson(pathNow, "write", valWrite);
+    if (!writePackage) {
         console.error(chalk.red("Failed to created the package project!\n"));
         process.exit(-1);
     }
@@ -204,12 +206,13 @@ function init(pathNow) {
     );
 }
 
-function readWritePackageJson(type = "read", value) {
+function readWritePackageJson(pathNow, type = "read", value = undefined) {
     try {
-        let packageData = fs.readJsonSync("./package.json");
+        const fileDir = path.join(pathNow, "./package.json");
+        let packageData = fs.readJsonSync(fileDir);
         if (type === "write" && typeof value !== "undefined") {
             let writeData = { ...packageData, ...value };
-            packageData = fs.writeJsonSync("./package.json", writeData);
+            packageData = fs.writeJsonSync(fileDir, writeData);
             return true;
         }
         if (!packageData) {
