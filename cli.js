@@ -33,13 +33,7 @@ function validChar(s) {
     return true;
 }
 
-function init() {
-    // console.log("Installation process..")
-    // const runInstallPackage = `npm install`;
-    // if (!runCommand(runInstallPackage)) {
-    //     console.error(`Installation failed!`);
-    //     process.exit(-1);
-    // }
+function init(pathNow) {
 
     const nameProject = process.argv[2] || "micro";
     /* Check folder exists */
@@ -93,17 +87,7 @@ function init() {
     const checkedOut = runCommand(gitCheckoutCommand);
     if (!checkedOut) process.exit(-1);
 
-    /* Delete file before finish */
-    // let removeOther, execRemoveOther;
-    // const opsys = process.platform;
-    // if (opsys == "darwin" || opsys == "linux") {
-    //     // removeOther = `cd ${nameProject} && rm -rf bin && rm .npmignore && git remote rm origin`;
-    //     removeOther = `cd ${nameProject} && rm package.json && rm .npmignore && git remote rm origin`;
-    // } else if (opsys == "win32" || opsys == "win64") {
-    //     removeOther = `cd ${nameProject} && del package.json && mv ${appFramework}/* ../${nameProject} && rmdir /S /q react-app && rmdir /S /q vue-app && rmdir /S /q "bin" && del .npmignore && git remote rm origin`;
-    // }
-
-    const directoryProject = path.join(__dirname, nameProject);
+    const directoryProject = path.join(pathNow, nameProject);
     /* Delete File */
     const execRemoveOther = runCommand(
         `cd ${nameProject} && git remote rm origin`
@@ -152,6 +136,29 @@ function init() {
             console.error("Failed to created project! ", e.message);
         }
     });
+
+    /* Move package */
+    // const directoryTemplate = path.join(directoryProject, appFramework);
+    // fs.readdir(directoryTemplate, (err, files) => {
+    //     if (err) throw err;
+
+    //     try {
+    //         for (const file of files) {
+    //             fs.moveSync(
+    //                 path.join(directoryTemplate, file),
+    //                 path.join(directoryTemplate, `../${file}`),
+    //                 (err) => {
+    //                     if (err) throw err;
+    //                 }
+    //             );
+    //         }
+    //         fs.removeSync(path.join(directoryProject, appFramework), (err) => {
+    //             if (err) throw err;
+    //         });
+    //     } catch (e) {
+    //         console.error("Failed to created project! ", e.message);
+    //     }
+    // });
 
     /* Finish */
     console.log("Congratulations!!!\n");
