@@ -59,8 +59,6 @@ function init(pathNow) {
                 )} cannot contain uppercase letters!\n`
             )}`
         );
-        /* Remove Project */
-        fs.removeSync(path.join(pathNow, nameProject), (err));
         process.exit(-1);
     }
 
@@ -90,8 +88,7 @@ function init(pathNow) {
     const gitCheckoutCommand = `git clone --depth 1 --filter=blob:none --sparse https://github.com/ugiispoyo/Micro-Id.git ${nameProject} && cd ${nameProject} && git sparse-checkout init --cone && git sparse-checkout set ${appFramework}`;
     const checkedOut = runCommand(gitCheckoutCommand);
     if (!checkedOut) {
-        /* Remove Project */
-        fs.removeSync(path.join(pathNow, nameProject), (err));
+        console.error("Failed to created project!\n");
         process.exit(-1)
     }
 
@@ -101,8 +98,6 @@ function init(pathNow) {
     );
     if (!execRemoveOther) {
         console.error("Failed to created project!\n");
-        /* Remove Project */
-        fs.removeSync(path.join(pathNow, nameProject), (err));
         process.exit(-1);
     }
     const filesNoDelete = [".git", appFramework];
@@ -118,8 +113,6 @@ function init(pathNow) {
                 }
             }
         } catch (e) {
-            /* Remove Project */
-            fs.removeSync(path.join(pathNow, nameProject), (err));
             console.error("Failed to created project! ", e.message, '\n');
             process.exit(-1);
         }
@@ -145,8 +138,6 @@ function init(pathNow) {
                 if (err) throw err;
             });
         } catch (e) {
-            /* Remove Project */
-            fs.removeSync(path.join(pathNow, nameProject), (err));
             console.error("Failed to created project! ", e.message, '\n');
             process.exit(-1);
         }
@@ -157,8 +148,6 @@ function init(pathNow) {
         `cd ${path.join(pathNow, nameProject)} && npm install`
     );
     if(!installPackage) {
-        /* Remove Project */
-        fs.removeSync(path.join(pathNow, nameProject), (err));
         console.error("Failed install the package project!\n");
         process.exit(-1);
     }
