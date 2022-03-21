@@ -1,3 +1,4 @@
+const fs =  require('fs');
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 const Webpack = require("webpack");
@@ -85,9 +86,20 @@ module.exports = {
         new CopyWebpackPlugin({
             patterns: [
                 {
-                    from: path.resolve(__dirname, "../public/favicon.ico"),
+                    from: path.resolve(__dirname, "../public/*"),
+                    filter: async (resourcePath) => {
+                        // const data = await fs.promises.readFile(resourcePath);
+                        // const content = data.toString();
+                        const filterContent = ["index.html"]
+
+                        if (resourcePath.includes(filterContent)) {
+                            return false;
+                        }
+
+                        return true;
+                    },
                     to({ context, absoluteFilename }) {
-                        return Promise.resolve("[name].png");
+                        return Promise.resolve("[name][ext]");
                     },
                 },
             ],

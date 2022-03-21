@@ -12,6 +12,8 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const validApp = ["--react"];
 let appFramework = "";
+let directoryProject = "";
+const nameProject = process.argv[2] || "micro";
 
 /* Run Command */
 function runCommand(command, param, typeStdio = "ignore") {
@@ -38,8 +40,7 @@ function validChar(s) {
 }
 
 function init(pathNow) {
-    const nameProject = process.argv[2] || "micro";
-    const directoryProject = path.join(pathNow, nameProject);
+    directoryProject = path.join(pathNow, nameProject);
 
     /* Check folder exists */
     if (fs.existsSync(nameProject)) {
@@ -73,7 +74,7 @@ function init(pathNow) {
                 `${chalk.bold(
                     `Invalid type app ${chalk.red(
                         appFramework
-                    )}, you can use ["${chalk.blue("--react")}"]\n`
+                    )}, you can using ["${chalk.blue("--react")}"]\n`
                 )}`
             );
             process.exit(-1);
@@ -90,6 +91,7 @@ function init(pathNow) {
     const gitCheckoutCommand = `git clone --depth 1 --filter=blob:none --sparse https://github.com/ugiispoyo/Micro-Id.git ${nameProject} && cd ${nameProject} && git sparse-checkout init --cone && git sparse-checkout set ${appFramework}`;
     const checkedOut = runCommand(gitCheckoutCommand);
     if (!checkedOut) {
+        fs.removeSync(directoryProject);
         console.error("Failed to created project!\n");
         process.exit(-1);
     }
@@ -99,6 +101,7 @@ function init(pathNow) {
         `cd ${nameProject} && git remote rm origin`
     );
     if (!execRemoveOther) {
+        fs.removeSync(directoryProject);
         console.error("Failed to created project!\n");
         process.exit(-1);
     }
@@ -109,12 +112,11 @@ function init(pathNow) {
         try {
             for (const file of files) {
                 if (!filesNoDelete.includes(file)) {
-                    fs.removeSync(path.join(directoryProject, file), (err) => {
-                        if (err) throw err;
-                    });
+                    fs.removeSync(path.join(directoryProject, file));
                 }
             }
         } catch (e) {
+            fs.removeSync(directoryProject);
             console.error(
                 chalk.red("Failed to created project! ", e.message, "\n")
             );
@@ -131,16 +133,11 @@ function init(pathNow) {
             for (const file of files) {
                 fs.moveSync(
                     path.join(directoryTemplate, file),
-                    path.join(directoryTemplate, `../${file}`),
-                    (err) => {
-                        if (err) throw err;
-                    }
+                    path.join(directoryTemplate, `../${file}`)
                 );
             }
-            fs.removeSync(path.join(directoryProject, appFramework), (err) => {
-                if (err) throw err;
-            });
         } catch (e) {
+            fs.removeSync(directoryProject);
             console.error(
                 chalk.red("Failed to created project! ", e.message, "\n")
             );
@@ -149,6 +146,7 @@ function init(pathNow) {
     });
 
     /* Install package dependencies */
+    console.log("Installation package dependencies...");
     let listPackage = Object.keys(readWritePackageJson(pathNow).dependencies)
         .toString()
         .replace(/,/g, " ");
@@ -158,12 +156,15 @@ function init(pathNow) {
         "inherit"
     );
     if (!installPackage) {
+        fs.removeSync(directoryProject);
         console.error(`${chalk.red(`\nError install package ${listPackage}\n`)},
                 you can try with the manual method, ${chalk.bold(
                     `npm install ${listPackage} --force`
                 )}
             \n`);
+        process.exit(-1);
     }
+
     /* Install package dev dependencies */
     let listPackageDev = Object.keys(
         readWritePackageJson(pathNow).devDependencies
@@ -176,6 +177,7 @@ function init(pathNow) {
         "inherit"
     );
     if (!installPackageDev) {
+        fs.removeSync(directoryProject);
         console.error(`${chalk.red(
             `\nError install package ${listPackageDev}\n`
         )},
@@ -183,12 +185,26 @@ function init(pathNow) {
                     `npm install ${listPackageDev} --save-dev --force`
                 )}
             \n`);
+        process.exit(-1);
     }
+
+    /* Delete folder template */
+    let deleteTemplate = fs.remove(directoryTemplate);
+    if (!deleteTemplate) {
+        fs.removeSync(directoryProject);
+        console.error(
+            chalk.red("Failed to created project!\n")
+        );
+        process.exit(-1);
+    }
+
+    /* Update package.json */
     const valWrite = {
         name: nameProject,
     };
     let writePackage = readWritePackageJson(pathNow, "write", valWrite);
     if (!writePackage) {
+        fs.removeSync(directoryProject);
         console.error(chalk.red("Failed to created the package project!\n"));
         process.exit(-1);
     }
@@ -206,25 +222,16 @@ function init(pathNow) {
 function readWritePackageJson(pathNow, type = "read", value = undefined) {
     try {
         /* "/[namProject]/[typeApp/appFramework]/package.json" */
-        const nameProject = process.argv[2] || "micro";
         const filePath = path.join(pathNow, nameProject);
         const fileDir = path.join(
             path.join(filePath, appFramework),
             "package.json"
         );
 
-        let packageData = fs.readJsonSync(fileDir, (err) => {
-            if (err) {
-                fs.removeSync(path.join(pathNow, nameProject));
-            }
-        });
+        let packageData = fs.readJsonSync(fileDir);
         if (type === "write" && typeof value !== "undefined") {
-            let writeData = { ...packageData, ...value };
-            packageData = fs.writeJsonSync(fileDir, writeData, (err) => {
-                if (err) {
-                    fs.removeSync(path.join(pathNow, nameProject));
-                }
-            });
+            let writeData = { ...value, ...packageData };
+            packageData = fs.writeJson(fileDir, writeData);
             return true;
         }
         if (!packageData) {
@@ -233,7 +240,7 @@ function readWritePackageJson(pathNow, type = "read", value = undefined) {
 
         return packageData;
     } catch (e) {
-        fs.removeSync(path.join(pathNow, nameProject));
+        fs.removeSync(directoryProject);
         console.error(`${chalk.red(`${e.message}\n`)}`);
         process.exit(-1);
     }

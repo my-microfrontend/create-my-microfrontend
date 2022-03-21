@@ -8,9 +8,20 @@ const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPl
 const CopyPlugin = require("copy-webpack-plugin");
 const commonConfig = require('./webpack.common');
 const packageJson = require('../package.json');
-const dotenv = require('dotenv').config( {
-    path: path.join(__dirname, './../.env')
-}).parsed;
+const { getEnvDev } = require('./config');
+
+const devConf = getEnvDev();
+
+const configMFP = [
+    new ModuleFederationPlugin({
+        name: devConf.name,
+        filename: devConf.filename,
+        exposes: devConf.exposes,
+        remotes: devConf.remotes,
+        shared: packageJson.dependencies,
+    }),
+];
+
 
 const prodConfig = {
     mode: 'production',
@@ -40,29 +51,14 @@ const prodConfig = {
         ]
     },
     plugins: [
+        /* Don't Delete */
+        ...configMFP,
         new webpack.ids.HashedModuleIdsPlugin({
             context: __dirname,
             hashFunction: "sha256",
             hashDigest: "hex",
             hashDigestLength: 20,
         }),
-        // new ModuleFederationPlugin({
-        //     name: 'container',
-        //     remotes: {
-        //         standard: 'standard@'+domain_std+'basic/remoteEntry.js',
-        //         standardent: 'ent@'+domain_std_ent+'ent/remoteEntry.js',
-        //         // custom: 'custom@'+domain_cst+'cp/remoteEntry.js',
-        //     },
-        //     filename: 'remoteEntry.js',
-        //     exposes: {
-        //         './DashboardModal_App': './src/components/wrap-container/sf-navbar/DashboardModal',
-        //     },
-        //     // shared: packageJson.dependencies,
-        //     shared: {
-        //         'react': '^17.0.1',
-        //         'react-dom': '^17.0.1'
-        //     }
-        // }),
         new MiniCssExtractPlugin({
             filename: "[name].css",
             chunkFilename: "[id].css"

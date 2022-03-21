@@ -1,36 +1,38 @@
-const { merge } = require('webpack-merge');
-const path = require('path');
-const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
-const commonConfig = require('./webpack.common.js');
-const packageJson = require('../package.json');
+const { merge } = require("webpack-merge");
+const path = require("path");
+const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
+const commonConfig = require("./webpack.common.js");
+const packageJson = require("../package.json");
+const { getEnvDev } = require('./config');
+
+const devConf = getEnvDev();
+
+const configMFP = [
+    new ModuleFederationPlugin({
+        name: devConf.name,
+        filename: devConf.filename,
+        exposes: devConf.exposes,
+        remotes: devConf.remotes,
+        shared: packageJson.dependencies,
+    }),
+];
 
 const devConfig = {
-    mode: 'development',
+    mode: "development",
     output: {
-        path: path.resolve(__dirname, 'dist'),
-        publicPath: 'http://localhost:8080/',
+        path: path.resolve(__dirname, "dist"),
+        publicPath: devConf.endpoint,
     },
     devServer: {
-        port: 8080,
+        port: devConf.port,
         historyApiFallback: {
-            disableDotRule: true
-        }
+            disableDotRule: true,
+        },
     },
-    devtool: 'eval',
+    devtool: "eval",
     plugins: [
-        // new ModuleFederationPlugin({
-        //     name: 'container',
-        //     remotes: {
-        //         standard: 'standard@http://localhost:8081/remoteEntry.js',
-        //         standardent: 'standardent@http://localhost:8083/remoteEntry.js',
-        //         // custom: 'custom@http://localhost:8082/remoteEntry.js',
-        //     },
-        //     filename: 'remoteEntry.js',
-        //     exposes: {
-        //         './DashboardModal_App': './src/components/wrap-container/sf-navbar/DashboardModal',
-        //     },
-        //     shared: packageJson.dependencies,
-        // }),
+        /* Don't Delete */
+        ...configMFP,
     ],
 };
 
