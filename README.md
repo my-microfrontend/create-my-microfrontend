@@ -138,10 +138,9 @@ SRC_COMPONENT_EXPOSE_2=./src/component/Footer
 npm start
 ```
 
-
-<hr>
 <span>Open on browser http://localhost:8080<span>
 <br/>
 <br/>
 
+<hr>
 <span>Note: Can only run on node js version 14 and above<span>
