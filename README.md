@@ -142,5 +142,8 @@ npm start
 <br/>
 <br/>
 
-<hr>
+<hr/>
 <span>Note: Can only run on node js version 14 and above<span>
+<hr/>
+
+<span>By: Ugi Ispoyo Widodo</span>
