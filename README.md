@@ -16,7 +16,7 @@ npx create-my-microfrontend [project-name]
 <h3>How to use</h3>
 <p>We will create 2 sample projects, the first app is as the main app, and the second app is the component that will be used by the first app</p>
 
-<h5>========= Main app =========<h5>
+<h5>========= Main app =========</h5>
 
 ``` 
 npx create-my-microfrontend main
@@ -81,7 +81,7 @@ REMOTE_FILE_1=remoteEntry.js
 npm start
 ```
 
-<h5>========= Second app =========<h5>
+<h5>========= Second app =========</h5>
 
 ``` 
 npx create-my-microfrontend app2
