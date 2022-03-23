@@ -19,10 +19,10 @@ function getEnvDev() {
     /* For get data remotes */
     const nameRemotes = allDotEnv.filter((val) => val?.includes("REMOTE_NAME"));
     const portRemotes = allDotEnv.filter((val) =>
-        val?.includes("REMOTE_PORT_APP_PROD")
+        val?.includes("REMOTE_PORT_APP_DEV")
     );
     const endpointRemotes = allDotEnv.filter((val) =>
-        val?.includes("REMOTE_ENDPOINT_PROD")
+        val?.includes("REMOTE_ENDPOINT_DEV")
     );
     const fileRemotes = allDotEnv.filter((val) => val?.includes("REMOTE_FILE"));
     let remotes = {};
