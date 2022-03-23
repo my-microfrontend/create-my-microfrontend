@@ -1,5 +1,6 @@
 {
-    "version": "0.0.40",
+    "name": "create-my-microfrontend",
+    "version": "1.0.0",
     "description": "Micro Frontend Framework",
     "scripts": {
         "start": "webpack serve --config config/webpack.dev.js",
