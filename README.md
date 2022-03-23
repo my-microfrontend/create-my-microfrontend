@@ -1,6 +1,7 @@
 # My MicroFrontend
 
 <h2>How to install</h2>
+
 ```
 npx create-my-microfrontend [project-name]
 ```
