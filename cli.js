@@ -124,8 +124,61 @@ function init(pathNow) {
         }
     });
 
-    /* Move Files */
+    /* Create file .env */
     const directoryTemplate = path.join(directoryProject, appFramework);
+    fs.readFile(
+        path.join(directoryTemplate, ".env.example"),
+        "utf8",
+        (err, data) => {
+            if (err) {
+                fs.removeSync(directoryProject);
+                console.error(err);
+                return;
+            }
+            const writeEnv = data.replace(/=app1/g, `=${nameProject}`);
+            fs.writeFile(
+                path.join(directoryProject, ".env"),
+                writeEnv,
+                (err) => {
+                    if (err) {
+                        fs.removeSync(directoryProject);
+                        console.error(err);
+                        return;
+                    }
+                }
+            );
+        }
+    );
+
+    /* Create package.json */
+    fs.readFile(
+        path.join(directoryTemplate, "package.json"),
+        "utf8",
+        (err, data) => {
+            if (err) {
+                fs.removeSync(directoryProject);
+                console.error(err);
+                return;
+            }
+            const writePackage = data.replace(
+                /"name": "create-my-microfrontend"/g,
+                `"name": "${nameProject}"`
+            );
+            fs.writeFile(
+                path.join(directoryProject, "package.json"),
+                writePackage,
+                (err) => {
+                    if (err) {
+                        fs.removeSync(directoryProject);
+                        console.error(err);
+                        return;
+                    }
+                }
+            );
+        }
+    );
+
+    /* Move Files */
     fs.readdir(directoryTemplate, (err, files) => {
         if (err) throw err;
 
@@ -192,22 +245,50 @@ function init(pathNow) {
     let deleteTemplate = fs.remove(directoryTemplate);
     if (!deleteTemplate) {
         fs.removeSync(directoryProject);
-        console.error(
-            chalk.red("Failed to created project!\n")
-        );
+        console.error(chalk.red("Failed to created project!\n"));
         process.exit(-1);
     }
 
+    /* Update lock */
+    fs.readFile(
+        path.join(directoryProject, "package-lock.json"),
+        "utf8",
+        (err, data) => {
+            if (err) {
+                fs.removeSync(directoryProject);
+                console.error(err);
+                return;
+            }
+            const writePackage = data.replace(
+                /"name": "create-my-microfrontend"/g,
+                `"name": "${nameProject}"`
+            );
+            const updatePackage = JSON.parse(writePackage);
+            delete updatePackage.packages[""].bin;
+            fs.writeFile(
+                path.join(directoryProject, "package-lock.json"),
+                JSON.stringify(updatePackage),
+                (err) => {
+                    if (err) {
+                        fs.removeSync(directoryProject);
+                        console.error(err);
+                        return;
+                    }
+                }
+            );
+        }
+    );
+
     /* Update package.json */
-    const valWrite = {
-        name: nameProject,
-    };
-    let writePackage = readWritePackageJson(pathNow, "write", valWrite);
-    if (!writePackage) {
-        fs.removeSync(directoryProject);
-        console.error(chalk.red("Failed to created the package project!\n"));
-        process.exit(-1);
-    }
+    // const valWrite = {
+    //     name: nameProject,
+    // };
+    // let writePackage = readWritePackageJson(pathNow, "write", valWrite);
+    // if (!writePackage) {
+    //     fs.removeSync(directoryProject);
+    //     console.error(chalk.red("Failed to created the package project!\n"));
+    //     process.exit(-1);
+    // }
 
     /* Finish */
     console.log("\nCongratulations!!!\n");
