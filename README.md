@@ -129,8 +129,8 @@ NAME_COMPONENT_EXPOSE_1=./Navbar
 NAME_COMPONENT_EXPOSE_2=./Footer
 
 # === Src component of file expose to another app ===
-SRC_COMPONENT_EXPOSE_1=./src/component/Navbar
-SRC_COMPONENT_EXPOSE_2=./src/component/Footer
+SRC_COMPONENT_EXPOSE_1=./src/components/Navbar
+SRC_COMPONENT_EXPOSE_2=./src/components/Footer
 
 ```
 
