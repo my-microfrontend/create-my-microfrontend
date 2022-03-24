@@ -295,15 +295,16 @@ SRC_COMPONENT_EXPOSE_2=./src/components/Footer
 npm start
 ```
 
-<span>Open on browser http://localhost:8080<span>
+<span>Open on browser http://localhost:8080</span>
 <br/>
 <br/>
 
-<h2>Report bugs<h2>
-[https://github.com/ugiispoyo/Micro-Id/issues](https://github.com/ugiispoyo/Micro-Id/issues)
+<h2>Report bugs</h2>
+
+###### [https://github.com/ugiispoyo/Micro-Id/issues](https://github.com/ugiispoyo/Micro-Id/issues)
 
 <hr/>
-<span>Note: Can only run on node js version 14 and above<span>
+<span>Note: Can only run on node js version 14 and above</span>
 <hr/>
     
 <hr/>
