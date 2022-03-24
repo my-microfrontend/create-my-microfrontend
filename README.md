@@ -169,7 +169,6 @@ REMOTE_FILE_1=remoteEntry.js
 
 =================================================
 =================================================
-=================================================
 
 <h3>Usage examples</h3>
 <p>We will create 2 sample projects, the first app is as the main app, and the second app is the component that will be used by the first app</p>
