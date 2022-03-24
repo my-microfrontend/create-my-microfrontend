@@ -1,6 +1,6 @@
 {
     "name": "create-my-microfrontend",
-    "version": "1.0.20",
+    "version": "1.0.21",
     "type": "module",
     "description": "Micro Frontend Framework",
     "keywords": [
@@ -20,7 +20,10 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
-    "install": "npm i -g create-my-microfrontend",
+    "bugs": {
+        "url" : "https://github.com/ugiispoyo/Micro-Id/issues",
+        "email" : "ugi.ispoyowidodo@gmail.com"
+    },
     "author": "Ugi Ispoyo Widodo",
     "license": "ISC",
     "dependencies": {
