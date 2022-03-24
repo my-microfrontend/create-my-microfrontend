@@ -248,7 +248,7 @@ NAME_COMPONENT_EXPOSE_3=./Sidebar
 ```
     
 <span><b>SRC_COMPONENT_EXPOSE</b></span>
-<p>To call the place where the js file is stored that will be remote by other apps, for file calling must be prefixed with "./" for example "./src/components/Navbar". And this can be more than one file to be remote, by simply adding the prefix _1, _2 and so on. <b style="color: orange">Mandatory if you want to expose component</b></p>
+<p>To call the place where the js file is stored that will be remote by other apps, for file calling must be prefixed with "./" for example "./src/components/Navbar". And this can be more than one file to be remote, by simply adding the prefix _1, _2 and so on. <b>Mandatory if you want to expose component</b></p>
 <span>For example:</span>
     
 ```
