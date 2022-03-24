@@ -23,7 +23,7 @@ npx create-my-microfrontend main
 ```
 
 src/App.js
-```
+```javascript
 import React, { lazy } from "react";
 
 const Navbar = lazy(() => import("app2/Navbar"));
@@ -88,7 +88,7 @@ npx create-my-microfrontend app2
 ```
 
 Create components "src/components/Navbar"
-```
+```javascript
 import React from 'react'
 
 export default function Navbar() {
@@ -99,7 +99,7 @@ export default function Navbar() {
 ```
 
 Create components "src/components/Footer"
-```
+```javascript
 import React from 'react'
 
 export default function Footer() {
@@ -300,7 +300,7 @@ REMOTE_ENDPOINT_DEV_1=http://localhost
 REMOTE_ENDPOINT_PROD_1=http://prod.com
 ```
 
-<span><b>```![#f03c15] REMOTE_FILE ```</b></span>
+<span><b>REMOTE_FILE</b></span>
 <p>Filename the remote application.  <b>this is mandatory</b></p>
 <span>For example:</span>
     
