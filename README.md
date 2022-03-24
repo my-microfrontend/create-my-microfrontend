@@ -148,6 +148,7 @@ npm start
 
 
 <h2>About Configuration file .env</h2>
+    
 ```
 # ======================================================================
 # =================== For Internal App =================================
@@ -191,50 +192,65 @@ REMOTE_FILE_1=remoteEntry.js
 <span><b>APP_NAME</b></span>
 <p>For naming from app if going to export component to other app, <b>this is mandatory</b></p>
 <span>For example:</span>
+    
 ```
 APP_NAME=main
 ```
+    
 <span><b>PORT_APP_DEV</b></span>
 <p>To determine the <i>development</i> port that will be used, do not use a port that is already in use by other applications, <b>this is mandatory</b></p>
 <span>For example:</span>
+    
 ```
 PORT_APP_DEV=8080
 ```
+    
 <span><b>PORT_APP_PROD</b></span>
 <p>To determine the <i>production</i> port that will be used, do not use a port that is already in use by other applications</p>
 <span>For example:</span>
+    
 ```
 PORT_APP_PROD=8000
 ```
+    
 <span><b>ENDPOINT_DEV</b></span>
 <p>Used to determine the endpoint during the development process</p>
 <span>For example:</span>
+    
 ```
 ENDPOINT_DEV=http://localhost
 ```
+    
 <span><b>ENDPOINT_PROD</b></span>
 <p>Used to determine the endpoint during the production process, <b>this is mandatory</b></p>
 <span>For example:</span>
+    
 ```
 ENDPOINT_PROD=http://prod.com
 ```
+    
 <span><b>FILE_NAME</b></span>
 <p>To specify a file name to call or remote from another app if this app is used for remote file. <b>Mandatory if you want to expose component</b></p>
 <span>For example:</span>
+    
 ```
 FILE_NAME=remoteEntry.js
 ```
+    
 <span><b>NAME_COMPONENT_EXPOSE</b></span>
 <p>For naming files from js files that will be remote by other apps, for file naming must be prefixed with "./" for example "./Foo". And this can be more than one file to be remote, by simply adding the prefix _1, _2 and so on. <b>Mandatory if you want to expose component</b></p>
 <span>For example:</span>
+    
 ```
 NAME_COMPONENT_EXPOSE_1=./Navbar
 NAME_COMPONENT_EXPOSE_2=./Footer
 NAME_COMPONENT_EXPOSE_3=./Sidebar
 ```
+    
 <span><b>SRC_COMPONENT_EXPOSE</b></span>
 <p>To call the place where the js file is stored that will be remote by other apps, for file calling must be prefixed with "./" for example "./src/components/Navbar". And this can be more than one file to be remote, by simply adding the prefix _1, _2 and so on. <b>Mandatory if you want to expose component</b></p>
 <span>For example:</span>
+    
 ```
 SRC_COMPONENT_EXPOSE_1=./src/components/Navbar
 SRC_COMPONENT_EXPOSE_2=./src/components/Footer
