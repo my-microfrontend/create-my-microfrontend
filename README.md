@@ -41,6 +41,8 @@ No  |   Name
 6   |   [REMOTE_FILE](https://github.com/ugiispoyo/Micro-Id/blob/master/README.md#remote_file)
 
 
+=================================================
+
 <h3>Configuration for internal app</h3>
 <p>for configuration from internal app</p>
 <hr/>
@@ -112,6 +114,8 @@ SRC_COMPONENT_EXPOSE_2=./src/components/Footer
 SRC_COMPONENT_EXPOSE_3=./src/components/Sidebar
 ```
 
+=================================================
+
 <h3>Configuration for External app or remote app</h3>
 <p>This configuration is used to call or remote file from outside app or second app or other app. for this configuration it always ends with a "_" or underscore then followed by a number indicating the number of apps being called</p>
 <hr/>
@@ -163,9 +167,9 @@ REMOTE_ENDPOINT_PROD_1=http://prod.com
 REMOTE_FILE_1=remoteEntry.js
 ```
 
-=====================================================================================================
-=====================================================================================================
-=====================================================================================================
+=================================================
+=================================================
+=================================================
 
 <h3>Usage examples</h3>
 <p>We will create 2 sample projects, the first app is as the main app, and the second app is the component that will be used by the first app</p>
