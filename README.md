@@ -146,4 +146,100 @@ npm start
 <span>Note: Can only run on node js version 14 and above<span>
 <hr/>
 
+
+<h2>About Configuration file .env</h2>
+```
+# ======================================================================
+# =================== For Internal App =================================
+# ======================================================================
+# === Initial name app ===
+APP_NAME=app1
+# === Port of app on dev mode === 
+PORT_APP_DEV=8080
+# === Port of app on prod mode if any === 
+PORT_APP_PROD=8000
+# === Endpoint dev ===
+ENDPOINT_DEV=http://localhost
+# === Endpoint prod ===
+ENDPOINT_PROD=http://prod.com
+# === File name of remote file ===
+FILE_NAME=remoteEntry.js
+# === File name of file expose to another app ===
+NAME_COMPONENT_EXPOSE_1=./Navbar
+# === Src component of file expose to another app ===
+SRC_COMPONENT_EXPOSE_1=./src/components/Navbar
+# ======================================================================
+# =================== For External app or remote app ===================
+# ======================================================================
+# === For remote name ===
+REMOTE_NAME_1=app2
+# === Port of app on dev mode === 
+REMOTE_PORT_APP_DEV_1=8081
+# === Port of app on prod mode if any === 
+REMOTE_PORT_APP_PROD_1=8001
+# === Endpoint dev ===
+REMOTE_ENDPOINT_DEV_1=http://localhost
+# === Endpoint prod ===
+REMOTE_ENDPOINT_PROD_1=http://prod.com
+# === File remote ====
+REMOTE_FILE_1=remoteEntry.js
+```
+
+<h3>Configuration for internal app</h3>
+<p>for configuration from internal app</p>
+<hr/>
+<span><b>APP_NAME</b></span>
+<p>For naming from app if going to export component to other app, <b>this is mandatory</b></p>
+<span>For example:</span>
+```
+APP_NAME=main
+```
+<span><b>PORT_APP_DEV</b></span>
+<p>To determine the <i>development</i> port that will be used, do not use a port that is already in use by other applications, <b>this is mandatory</b></p>
+<span>For example:</span>
+```
+PORT_APP_DEV=8080
+```
+<span><b>PORT_APP_PROD</b></span>
+<p>To determine the <i>production</i> port that will be used, do not use a port that is already in use by other applications</p>
+<span>For example:</span>
+```
+PORT_APP_PROD=8000
+```
+<span><b>ENDPOINT_DEV</b></span>
+<p>Used to determine the endpoint during the development process</p>
+<span>For example:</span>
+```
+ENDPOINT_DEV=http://localhost
+```
+<span><b>ENDPOINT_PROD</b></span>
+<p>Used to determine the endpoint during the production process, <b>this is mandatory</b></p>
+<span>For example:</span>
+```
+ENDPOINT_PROD=http://prod.com
+```
+<span><b>FILE_NAME</b></span>
+<p>To specify a file name to call or remote from another app if this app is used for remote file. <b>Mandatory if you want to expose component</b></p>
+<span>For example:</span>
+```
+FILE_NAME=remoteEntry.js
+```
+<span><b>NAME_COMPONENT_EXPOSE</b></span>
+<p>For naming files from js files that will be remote by other apps, for file naming must be prefixed with "./" for example "./Foo". And this can be more than one file to be remote, by simply adding the prefix _1, _2 and so on. <b>Mandatory if you want to expose component</b></p>
+<span>For example:</span>
+```
+NAME_COMPONENT_EXPOSE_1=./Navbar
+NAME_COMPONENT_EXPOSE_2=./Footer
+NAME_COMPONENT_EXPOSE_3=./Sidebar
+```
+<span><b>SRC_COMPONENT_EXPOSE</b></span>
+<p>To call the place where the js file is stored that will be remote by other apps, for file calling must be prefixed with "./" for example "./src/components/Navbar". And this can be more than one file to be remote, by simply adding the prefix _1, _2 and so on. <b>Mandatory if you want to expose component</b></p>
+<span>For example:</span>
+```
+SRC_COMPONENT_EXPOSE_1=./src/components/Navbar
+SRC_COMPONENT_EXPOSE_2=./src/components/Footer
+SRC_COMPONENT_EXPOSE_3=./src/components/Sidebar
+```
+
+
 <span>By: Ugi Ispoyo Widodo</span>
