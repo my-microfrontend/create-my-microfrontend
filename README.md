@@ -304,6 +304,5 @@ npm start
 <hr/>
     
 <hr/>
-<hr/>
 
 <span>By: Ugi Ispoyo Widodo</span>
