@@ -300,12 +300,15 @@ REMOTE_ENDPOINT_DEV_1=http://localhost
 REMOTE_ENDPOINT_PROD_1=http://prod.com
 ```
 
-<span><b>REMOTE_FILE</b></span>
+<span style="color: red;"><b>REMOTE_FILE</b></span>
 <p>Filename the remote application.  <b>this is mandatory</b></p>
 <span>For example:</span>
     
 ```
 REMOTE_FILE_1=remoteEntry.js
 ```
+    
+<hr/>
+<hr/>
 
 <span>By: Ugi Ispoyo Widodo</span>
