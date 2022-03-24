@@ -185,7 +185,16 @@ REMOTE_ENDPOINT_PROD_1=http://prod.com
 # === File remote ====
 REMOTE_FILE_1=remoteEntry.js
 ```
-[APP_NAME](https://github.com/ugiispoyo/Micro-Id/README.md#app_name)
+
+## Internal App
+[APP_NAME](https://github.com/ugiispoyo/Micro-Id/blob/master/README.md#app_name)
+[PORT_APP_DEV](https://github.com/ugiispoyo/Micro-Id/blob/master/README.md#port_app_dev)
+[PORT_APP_PROD](https://github.com/ugiispoyo/Micro-Id/blob/master/README.md#port_app_prod)
+[ENDPOINT_DEV](https://github.com/ugiispoyo/Micro-Id/blob/master/README.md#endpoint_dev)
+[ENDPOINT_PROD](https://github.com/ugiispoyo/Micro-Id/blob/master/README.md#endpoint_prod)
+[FILE_NAME](https://github.com/ugiispoyo/Micro-Id/blob/master/README.md#file_name)
+[NAME_COMPONENT_EXPOSE](https://github.com/ugiispoyo/Micro-Id/blob/master/README.md#name_component_expose)
+[SRC_COMPONENT_EXPOSE](https://github.com/ugiispoyo/Micro-Id/blob/master/README.md#src_component_expose)
 
 <h3>Configuration for internal app</h3>
 <p>for configuration from internal app</p>
@@ -198,7 +207,7 @@ REMOTE_FILE_1=remoteEntry.js
 APP_NAME=main
 ```
     
-<span><b>PORT_APP_DEV</b></span>
+<h4><b>PORT_APP_DEV</b></h4>
 <p>To determine the <i>development</i> port that will be used, do not use a port that is already in use by other applications, <b>this is mandatory</b></p>
 <span>For example:</span>
     
@@ -206,7 +215,7 @@ APP_NAME=main
 PORT_APP_DEV=8080
 ```
     
-<span><b>PORT_APP_PROD</b></span>
+<h4><b>PORT_APP_PROD</b></h4>
 <p>To determine the <i>production</i> port that will be used, do not use a port that is already in use by other applications</p>
 <span>For example:</span>
     
@@ -214,7 +223,7 @@ PORT_APP_DEV=8080
 PORT_APP_PROD=8000
 ```
     
-<span><b>ENDPOINT_DEV</b></span>
+<h4><b>ENDPOINT_DEV</b></h4>
 <p>Used to determine the endpoint during the development process</p>
 <span>For example:</span>
     
@@ -222,7 +231,7 @@ PORT_APP_PROD=8000
 ENDPOINT_DEV=http://localhost
 ```
     
-<span><b>ENDPOINT_PROD</b></span>
+<h4><b>ENDPOINT_PROD</b></h4>
 <p>Used to determine the endpoint during the production process, <b>this is mandatory</b></p>
 <span>For example:</span>
     
@@ -230,7 +239,7 @@ ENDPOINT_DEV=http://localhost
 ENDPOINT_PROD=http://prod.com
 ```
     
-<span><b>FILE_NAME</b></span>
+<h4><b>FILE_NAME</b></h4>
 <p>To specify a file name to call or remote from another app if this app is used for remote file. <b>Mandatory if you want to expose component</b></p>
 <span>For example:</span>
     
@@ -238,7 +247,7 @@ ENDPOINT_PROD=http://prod.com
 FILE_NAME=remoteEntry.js
 ```
     
-<span><b>#NAME_COMPONENT_EXPOSE</b></span>
+<h4><b>NAME_COMPONENT_EXPOSE</b></h4>
 <p>For naming files from js files that will be remote by other apps, for file naming must be prefixed with "./" for example "./Foo". And this can be more than one file to be remote, by simply adding the prefix _1, _2 and so on. <b>Mandatory if you want to expose component</b></p>
 <span>For example:</span>
     
@@ -248,7 +257,7 @@ NAME_COMPONENT_EXPOSE_2=./Footer
 NAME_COMPONENT_EXPOSE_3=./Sidebar
 ```
     
-<span><b>SRC_COMPONENT_EXPOSE</b></span>
+<h4><b>SRC_COMPONENT_EXPOSE</b></h4>
 <p>To call the place where the js file is stored that will be remote by other apps, for file calling must be prefixed with "./" for example "./src/components/Navbar". And this can be more than one file to be remote, by simply adding the prefix _1, _2 and so on. <b>Mandatory if you want to expose component</b></p>
 <span>For example:</span>
     
@@ -262,14 +271,14 @@ SRC_COMPONENT_EXPOSE_3=./src/components/Sidebar
 <p>This configuration is used to call or remote file from outside app or second app or other app. for this configuration it always ends with a "_" or underscore then followed by a number indicating the number of apps being called</p>
 <hr/>
 
-<span><b>REMOTE_NAME</b></span>
+<h4><b>REMOTE_NAME</b></h4>
 <p>The name of the remote application. <b>this is mandatory</b></p>
 <span>For example:</span>
     
 ```
 REMOTE_NAME_1=app2
 ```
-<span><b>REMOTE_PORT_APP_DEV</b></span>
+<h4><b>REMOTE_PORT_APP_DEV</b></h4>
 <p>Port of app development the remote application. <b>this is mandatory</b></p>
 <span>For example:</span>
     
@@ -277,7 +286,7 @@ REMOTE_NAME_1=app2
 REMOTE_PORT_APP_DEV_1=8081
 ```
 
-<span><b>REMOTE_PORT_APP_PROD</b></span>
+<h4><b>REMOTE_PORT_APP_PROD</b></h4>
 <p>Port of app production the remote application.</p>
 <span>For example:</span>
     
@@ -285,7 +294,7 @@ REMOTE_PORT_APP_DEV_1=8081
 REMOTE_PORT_APP_PROD_1=8001
 ```
 
-<span><b>REMOTE_ENDPOINT_DEV</b></span>
+<h4><b>REMOTE_ENDPOINT_DEV</b></h4>
 <p>Endpoint of app development the remote application.  <b>this is mandatory</b></p>
 <span>For example:</span>
     
@@ -293,7 +302,7 @@ REMOTE_PORT_APP_PROD_1=8001
 REMOTE_ENDPOINT_DEV_1=http://localhost
 ```
 
-<span><b>REMOTE_ENDPOINT_PROD</b></span>
+<h4><b>REMOTE_ENDPOINT_PROD</b></h4>
 <p>Endpoint of app production the remote application.  <b>this is mandatory</b></p>
 <span>For example:</span>
     
@@ -301,7 +310,7 @@ REMOTE_ENDPOINT_DEV_1=http://localhost
 REMOTE_ENDPOINT_PROD_1=http://prod.com
 ```
 
-<span><b>REMOTE_FILE</b></span>
+<h4><b>REMOTE_FILE</b></h4>
 <p>Filename the remote application.  <b>this is mandatory</b></p>
 <span>For example:</span>
     
