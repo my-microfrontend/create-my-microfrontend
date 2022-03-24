@@ -185,12 +185,12 @@ REMOTE_ENDPOINT_PROD_1=http://prod.com
 # === File remote ====
 REMOTE_FILE_1=remoteEntry.js
 ```
-[a link](https://github.com/ugiispoyo/Micro-Id/README.md#NAME_COMPONENT_EXPOSE)
+[APP_NAME](https://github.com/ugiispoyo/Micro-Id/README.md#app_name)
 
 <h3>Configuration for internal app</h3>
 <p>for configuration from internal app</p>
 <hr/>
-<span><b>APP_NAME</b></span>
+<h4><b>APP_NAME</b></h4>
 <p>For naming from app if going to export component to other app, <b>this is mandatory</b></p>
 <span>For example:</span>
     
