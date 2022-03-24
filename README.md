@@ -305,8 +305,10 @@ npm start
 
 <h2>Report bugs</h2>
 
-###### [https://github.com/ugiispoyo/Micro-Id/issues](https://github.com/ugiispoyo/Micro-Id/issues)
+##### [https://github.com/ugiispoyo/Micro-Id/issues](https://github.com/ugiispoyo/Micro-Id/issues)
 
+<br/>
+<br/>
 <hr/>
 
 <span>By: Ugi Ispoyo Widodo</span>
