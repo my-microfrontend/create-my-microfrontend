@@ -299,6 +299,9 @@ npm start
 <br/>
 <br/>
 
+<h2>Report bugs<h2>
+[https://github.com/ugiispoyo/Micro-Id/issues](https://github.com/ugiispoyo/Micro-Id/issues)
+
 <hr/>
 <span>Note: Can only run on node js version 14 and above<span>
 <hr/>
