@@ -300,7 +300,7 @@ REMOTE_ENDPOINT_DEV_1=http://localhost
 REMOTE_ENDPOINT_PROD_1=http://prod.com
 ```
 
-<span><b>![#f03c15](REMOTE_FILE)`#f03c15`</b></span>
+<span><b>![#f03c15 (REMOTE_FILE)]</b></span>
 <p>Filename the remote application.  <b>this is mandatory</b></p>
 <span>For example:</span>
     
