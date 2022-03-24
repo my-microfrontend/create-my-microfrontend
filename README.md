@@ -189,7 +189,6 @@ REMOTE_FILE_1=remoteEntry.js
 ## Internal App
 
 No | Name
----| ---
 1. | [APP_NAME](https://github.com/ugiispoyo/Micro-Id/blob/master/README.md#app_name)
 2. | [PORT_APP_DEV](https://github.com/ugiispoyo/Micro-Id/blob/master/README.md#port_app_dev)
 3. | [PORT_APP_PROD](https://github.com/ugiispoyo/Micro-Id/blob/master/README.md#port_app_prod)
