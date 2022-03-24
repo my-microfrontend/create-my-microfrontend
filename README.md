@@ -202,7 +202,7 @@ No  |   Name
     
 No | Name
 --- | ---
-1. | satu
+satu | satu
 
 <h3>Configuration for internal app</h3>
 <p>for configuration from internal app</p>
