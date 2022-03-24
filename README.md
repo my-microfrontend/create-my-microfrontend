@@ -298,15 +298,15 @@ npm start
 <span>Open on browser http://localhost:8080</span>
 <br/>
 <br/>
+<hr/>
+<span>Note: Can only run on node js version 14 and above</span>
+<hr/>
+<br/>
 
 <h2>Report bugs</h2>
 
 ###### [https://github.com/ugiispoyo/Micro-Id/issues](https://github.com/ugiispoyo/Micro-Id/issues)
 
-<hr/>
-<span>Note: Can only run on node js version 14 and above</span>
-<hr/>
-    
 <hr/>
 
 <span>By: Ugi Ispoyo Widodo</span>
