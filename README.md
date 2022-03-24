@@ -299,7 +299,7 @@ npm start
 <br/>
 <br/>
 
-## [Test live](https://stackblitz.com/edit/node-9tejzx)
+### [Live preview](https://stackblitz.com/edit/node-9tejzx)
 
 <hr/>
 <span>Note: Can only run on node js version 14 and above</span>
