@@ -185,6 +185,7 @@ REMOTE_ENDPOINT_PROD_1=http://prod.com
 # === File remote ====
 REMOTE_FILE_1=remoteEntry.js
 ```
+[a link](https://github.com/ugiispoyo/Micro-Id/README.md#NAME_COMPONENT_EXPOSE)
 
 <h3>Configuration for internal app</h3>
 <p>for configuration from internal app</p>
@@ -237,7 +238,7 @@ ENDPOINT_PROD=http://prod.com
 FILE_NAME=remoteEntry.js
 ```
     
-<span><b>NAME_COMPONENT_EXPOSE</b></span>
+<span><b>#NAME_COMPONENT_EXPOSE</b></span>
 <p>For naming files from js files that will be remote by other apps, for file naming must be prefixed with "./" for example "./Foo". And this can be more than one file to be remote, by simply adding the prefix _1, _2 and so on. <b>Mandatory if you want to expose component</b></p>
 <span>For example:</span>
     
