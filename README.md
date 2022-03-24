@@ -187,14 +187,19 @@ REMOTE_FILE_1=remoteEntry.js
 ```
 
 ## Internal App
-[APP_NAME](https://github.com/ugiispoyo/Micro-Id/blob/master/README.md#app_name)
-[PORT_APP_DEV](https://github.com/ugiispoyo/Micro-Id/blob/master/README.md#port_app_dev)
-[PORT_APP_PROD](https://github.com/ugiispoyo/Micro-Id/blob/master/README.md#port_app_prod)
-[ENDPOINT_DEV](https://github.com/ugiispoyo/Micro-Id/blob/master/README.md#endpoint_dev)
-[ENDPOINT_PROD](https://github.com/ugiispoyo/Micro-Id/blob/master/README.md#endpoint_prod)
-[FILE_NAME](https://github.com/ugiispoyo/Micro-Id/blob/master/README.md#file_name)
-[NAME_COMPONENT_EXPOSE](https://github.com/ugiispoyo/Micro-Id/blob/master/README.md#name_component_expose)
-[SRC_COMPONENT_EXPOSE](https://github.com/ugiispoyo/Micro-Id/blob/master/README.md#src_component_expose)
+```
+| No   | Name
+| ---- | ---------------------------------
+| 1.   | [APP_NAME](https://github.com/ugiispoyo/Micro-Id/blob/master/README.md#app_name)
+| 2.   | [PORT_APP_DEV](https://github.com/ugiispoyo/Micro-Id/blob/master/README.md#port_app_dev)
+| 3.   | [PORT_APP_PROD](https://github.com/ugiispoyo/Micro-Id/blob/master/README.md#port_app_prod)
+| 4.   | [ENDPOINT_DEV](https://github.com/ugiispoyo/Micro-Id/blob/master/README.md#endpoint_dev)
+| 5.   | [ENDPOINT_PROD](https://github.com/ugiispoyo/Micro-Id/blob/master/README.md#endpoint_prod)
+| 6.   | [FILE_NAME](https://github.com/ugiispoyo/Micro-Id/blob/master/README.md#file_name)
+| 7.   | [NAME_COMPONENT_EXPOSE](https://github.com/ugiispoyo/Micro-Id/blob/master/README.md#name_component_expose)
+| 8.   | [SRC_COMPONENT_EXPOSE](https://github.com/ugiispoyo/Micro-Id/blob/master/README.md#src_component_expose)
+
+```
 
 <h3>Configuration for internal app</h3>
 <p>for configuration from internal app</p>
