@@ -257,5 +257,55 @@ SRC_COMPONENT_EXPOSE_2=./src/components/Footer
 SRC_COMPONENT_EXPOSE_3=./src/components/Sidebar
 ```
 
+<h3>Configuration for External app or remote app</h3>
+<p>This configuration is used to call or remote file from outside app or second app or other app. for this configuration it always ends with a "_" or underscore then followed by a number indicating the number of apps being called</p>
+<hr/>
+
+<span><b>REMOTE_NAME</b></span>
+<p>The name of the remote application. <b>this is mandatory</b></p>
+<span>For example:</span>
+    
+```
+REMOTE_NAME_1=app2
+```
+<span><b>REMOTE_PORT_APP_DEV</b></span>
+<p>Port of app development the remote application. <b>this is mandatory</b></p>
+<span>For example:</span>
+    
+```
+REMOTE_PORT_APP_DEV_1=8081
+```
+
+<span><b>REMOTE_PORT_APP_PROD</b></span>
+<p>Port of app production the remote application.</p>
+<span>For example:</span>
+    
+```
+REMOTE_PORT_APP_PROD_1=8001
+```
+
+<span><b>REMOTE_ENDPOINT_DEV</b></span>
+<p>Endpoint of app development the remote application.  <b>this is mandatory</b></p>
+<span>For example:</span>
+    
+```
+REMOTE_ENDPOINT_DEV_1=http://localhost
+```
+
+<span><b>REMOTE_ENDPOINT_PROD</b></span>
+<p>Endpoint of app production the remote application.  <b>this is mandatory</b></p>
+<span>For example:</span>
+    
+```
+REMOTE_ENDPOINT_PROD_1=http://prod.com
+```
+
+<span><b>REMOTE_FILE</b></span>
+<p>Filename the remote application.  <b>this is mandatory</b></p>
+<span>For example:</span>
+    
+```
+REMOTE_FILE_1=remoteEntry.js
+```
 
 <span>By: Ugi Ispoyo Widodo</span>
