@@ -1,6 +1,6 @@
 {
     "name": "create-my-microfrontend",
-    "version": "1.0.21",
+    "version": "0.0.22",
     "type": "module",
     "description": "Micro Frontend Framework",
     "keywords": [
@@ -21,8 +21,8 @@
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "bugs": {
-        "url" : "https://github.com/ugiispoyo/Micro-Id/issues",
-        "email" : "ugi.ispoyowidodo@gmail.com"
+        "url": "https://github.com/ugiispoyo/Micro-Id/issues",
+        "email": "ugi.ispoyowidodo@gmail.com"
     },
     "author": "Ugi Ispoyo Widodo",
     "license": "ISC",
