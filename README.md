@@ -200,9 +200,9 @@ No  |   Name
 8. | [SRC_COMPONENT_EXPOSE](https://github.com/ugiispoyo/Micro-Id/blob/master/README.md#src_component_expose)
 
     
-No  |   Name
---- |   ---
-1.  |   satu
+No | Name
+--- | ---
+1. | satu
 
 <h3>Configuration for internal app</h3>
 <p>for configuration from internal app</p>
