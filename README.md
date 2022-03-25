@@ -86,7 +86,7 @@ ENDPOINT_DEV=http://localhost
 ENDPOINT_PROD=http://prod.com
 ```
     
-`<h4><b>FILE_NAME</b></h4>`
+<h4><b>FILE_NAME</b></h4>
 <p>To specify a file name to call or remote from another app if this app is used for remote file. <b>Mandatory if you want to expose component</b></p>
 <span>For example:</span>
     
