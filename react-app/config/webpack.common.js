@@ -1,4 +1,4 @@
-const fs =  require('fs');
+const fs = require("fs");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
 const Webpack = require("webpack");
@@ -54,23 +54,15 @@ module.exports = {
                 loader: "file-loader",
             },
             {
-                test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+                test: /\.svg$/i,
+                type: "asset",
+                resourceQuery: /url/, // *.svg?url
+            },
+            {
+                test: /\.svg$/i,
                 issuer: /\.[jt]sx?$/,
-                use: [
-                    {
-                        loader: "babel-loader",
-                    },
-                    {
-                        loader: "@svgr/webpack",
-                        options: {
-                            babel: false,
-                            icon: true,
-                        },
-                    },
-                    {
-                        loader: "url-loader",
-                    },
-                ],
+                resourceQuery: { not: [/url/] }, // exclude react component if *.svg?url
+                use: ["@svgr/webpack", 'url-loader'],
             },
         ],
     },
@@ -90,7 +82,7 @@ module.exports = {
                     filter: async (resourcePath) => {
                         // const data = await fs.promises.readFile(resourcePath);
                         // const content = data.toString();
-                        const filterContent = ["index.html"]
+                        const filterContent = ["index.html"];
 
                         if (resourcePath.includes(filterContent)) {
                             return false;

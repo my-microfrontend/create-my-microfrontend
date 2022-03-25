@@ -10,7 +10,7 @@ import { execSync } from "child_process";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
-const validApp = ["--react"];
+const validApp = ["--react", "--vue"];
 let appFramework = "";
 let directoryProject = "";
 const nameProject = process.argv[2] || "micro";
@@ -74,7 +74,7 @@ function init(pathNow) {
                 `${chalk.bold(
                     `Invalid type app ${chalk.red(
                         appFramework
-                    )}, you can using ["${chalk.blue("--react")}"]\n`
+                    )}, you can using ["${chalk.blue("--react")}", "${chalk.blue("--vue")}"]\n`
                 )}`
             );
             process.exit(-1);
