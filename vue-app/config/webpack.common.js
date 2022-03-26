@@ -82,9 +82,6 @@ module.exports = {
             {
                 test: /\.vue$/,
                 loader: "vue-loader",
-                // options: {
-                //     hotReload: true, // disables Hot Reload
-                // },
             },
             {
                 test: /\.pug$/,
@@ -106,6 +103,17 @@ module.exports = {
                 exclude: (file) =>
                     /node_modules/.test(file) && !/\.vue\.js/.test(file),
             },
+            {
+                test: /\.jsx$/,
+                exclude: /node_modules/,
+                use: {
+                    loader: "babel-loader",
+                    options: {
+                        presets: ["@vue/babel-preset-jsx", "@babel/preset-env"],
+                        plugins: ["@babel/plugin-transform-runtime"],
+                    },
+                },
+            },
             // {
             //     test: /\.svg$/,
             //     use: ["babel-loader", "vue-svg-loader"],
@@ -119,7 +127,7 @@ module.exports = {
                 test: /\.svg$/i,
                 issuer: /\.[jt]sx?$/,
                 resourceQuery: { not: [/url/] }, // exclude react component if *.svg?url
-                use: ["@svgr/webpack", 'url-loader'],
+                use: ["@svgr/webpack", "url-loader"],
             },
             {
                 test: /\.(png|jpg|jpeg|gif|webp|ttf|eot|woff(2)?)(\?[a-z0-9=&.]+)?$/,
