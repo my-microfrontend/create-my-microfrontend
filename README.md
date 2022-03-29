@@ -8,7 +8,7 @@ The My Micro Frontend is used to generate framework templates from the micro fro
 ```
 npx create-my-microfrontend [project-name] [project-framework]
 ```
-Example:
+*Example:*
 ```
 npx create-my-microfrontend main --vue
 ```
@@ -18,7 +18,7 @@ or
 npm i -g create-my-microfrontend
 npx create-my-microfrontend [project-name] [project-framework]
 ```
-Example:
+*Example:*
 ```
 npm i -g create-my-microfrontend
 npx create-my-microfrontend main --vue
@@ -26,8 +26,8 @@ npx create-my-microfrontend main --vue
 
 No  | Command | Description | Default
 --- | --- | --- | ---
-1   | project-name | To determine the name of the project you will create | micro
-2   | project-framework | To determine the framework to be used, you can use "--react" "--vue" | --react
+1   | project-name | To determine the name of the project you will create | `micro`
+2   | project-framework | To determine the framework to be used, you can use `--react` `--vue` | `--react`
 
 <h2>.env File Configuration</h2>
 <p>There are two configurations, the first is a configuration for the app itself, and the second is a configuration for remote apps or taking components from other apps</p>
