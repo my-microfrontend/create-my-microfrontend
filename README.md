@@ -1,6 +1,6 @@
 # My Micro Frontend
 
-<p>The My Micro Frontend is used to generate framework templates from the micro frontend which can be used directly. For the configuration of the My Micro Frontend which will be used to create a micro frontend directly from the .env file. This My Micro Frontend is already available in several frameworks such as [React], [Vue] and will likely continue to grow again.</p>
+The My Micro Frontend is used to generate framework templates from the micro frontend which can be used directly. For the configuration of the My Micro Frontend which will be used to create a micro frontend directly from the .env file. This My Micro Frontend is already available in several frameworks such as `React`, `Vue` and will likely continue to grow again.
 <hr/>
 
 <h2>How to install</h2>
