@@ -1,10 +1,9 @@
 # My MicroFrontend
 
-<h2>How to install</h2>
-
 <p>The micro id is used to generate framework templates from the micro frontend which can be used directly. For the configuration of the Micro Id which will be used to create a micro frontend directly from the .env file. This Micro Id is already available in several frameworks such as React, Vue and will likely continue to grow again.</p>
 <br/>
 
+<h2>How to install</h2>
 
 ```
 npx create-my-microfrontend [project-name] [project-framework]
