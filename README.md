@@ -29,6 +29,8 @@ No  | Command | Description | Default
 1   | project-name | To determine the name of the project you will create | `micro`
 2   | project-framework | To determine the framework to be used, you can use `--react` `--vue` | `--react`
 
+<hr/>
+
 <h2>.env File Configuration</h2>
 <p>There are two configurations, the first is a configuration for the app itself, and the second is a configuration for remote apps or taking components from other apps</p>
     
