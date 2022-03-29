@@ -7,7 +7,7 @@
         "build": "webpack --config config/webpack.prod.js"
     },
     "author": "Ugi Ispoyo Widodo",
-    "license": "ISC",
+    "license": "MIT",
     "dependencies": {
         "vue": "^3.2.31"
     },
