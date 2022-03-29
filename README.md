@@ -8,12 +8,20 @@ The My Micro Frontend is used to generate framework templates from the micro fro
 ```
 npx create-my-microfrontend [project-name] [project-framework]
 ```
-
+Example:
+```
+npx create-my-microfrontend main --vue
+```
 or
 
 ```
 npm i -g create-my-microfrontend
 npx create-my-microfrontend [project-name] [project-framework]
+```
+Example:
+```
+npm i -g create-my-microfrontend
+npx create-my-microfrontend main --vue
 ```
 
 No  | Command | Description | Default
