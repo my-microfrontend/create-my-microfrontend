@@ -326,7 +326,7 @@ npm start
 
 <h2>Report bugs</h2>
 
-##### [https://github.com/ugiispoyo/Micro-Id/issues](https://github.com/ugiispoyo/Micro-Id/issues)
+##### [https://github.com/my-microfrontend/create-my-microfrontend/issues](https://github.com/ugiispoyo/Micro-Id/issues)
 
 <br/>
 <br/>
