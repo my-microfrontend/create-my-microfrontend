@@ -12,7 +12,7 @@ npx create-my-microfrontend [project-name] [project-framework]
 ```
 npx create-my-microfrontend main --vue
 ```
-or
+**or**
 
 ```
 npm i -g create-my-microfrontend
