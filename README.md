@@ -34,29 +34,29 @@ No  | Command | Description | Default
 <h2>.env File Configuration</h2>
 <p>There are two configurations, the first is a configuration for the app itself, and the second is a configuration for remote apps or taking components from other apps</p>
     
-## [Internal App](https://github.com/ugiispoyo/Micro-Id/blob/master/README.md#configuration-for-internal-app)
+## [Internal App](https://github.com/my-microfrontend/create-my-microfrontend/blob/master/README.md#configuration-for-internal-app)
 
 No  |   Name
 --- |   ---
-1   |   [APP_NAME](https://github.com/ugiispoyo/Micro-Id/blob/master/README.md#app_name)
-2   |   [PORT_APP_DEV](https://github.com/ugiispoyo/Micro-Id/blob/master/README.md#port_app_dev)
-3   |   [PORT_APP_PROD](https://github.com/ugiispoyo/Micro-Id/blob/master/README.md#port_app_prod)
-4   |   [ENDPOINT_DEV](https://github.com/ugiispoyo/Micro-Id/blob/master/README.md#endpoint_dev)
-5   |   [ENDPOINT_PROD](https://github.com/ugiispoyo/Micro-Id/blob/master/README.md#endpoint_prod)
-6   |   [FILE_NAME](https://github.com/ugiispoyo/Micro-Id/blob/master/README.md#file_name)
-7   |   [NAME_COMPONENT_EXPOSE](https://github.com/ugiispoyo/Micro-Id/blob/master/README.md#name_component_expose) 
-8   |   [SRC_COMPONENT_EXPOSE](https://github.com/ugiispoyo/Micro-Id/blob/master/README.md#src_component_expose)
+1   |   [APP_NAME](https://github.com/my-microfrontend/create-my-microfrontend/blob/master/README.md#app_name)
+2   |   [PORT_APP_DEV](https://github.com/my-microfrontend/create-my-microfrontend/blob/master/README.md#port_app_dev)
+3   |   [PORT_APP_PROD](https://github.com/my-microfrontend/create-my-microfrontend/blob/master/README.md#port_app_prod)
+4   |   [ENDPOINT_DEV](https://github.com/my-microfrontend/create-my-microfrontend/blob/master/README.md#endpoint_dev)
+5   |   [ENDPOINT_PROD](https://github.com/my-microfrontend/create-my-microfrontend/blob/master/README.md#endpoint_prod)
+6   |   [FILE_NAME](https://github.com/my-microfrontend/create-my-microfrontend/blob/master/README.md#file_name)
+7   |   [NAME_COMPONENT_EXPOSE](https://github.com/my-microfrontend/create-my-microfrontend/blob/master/README.md#name_component_expose) 
+8   |   [SRC_COMPONENT_EXPOSE](https://github.com/my-microfrontend/create-my-microfrontend/blob/master/README.md#src_component_expose)
     
-## [External App](https://github.com/ugiispoyo/Micro-Id/blob/master/README.md#configuration-for-external-app-or-remote-app)
+## [External App](https://github.com/my-microfrontend/create-my-microfrontend/blob/master/README.md#configuration-for-external-app-or-remote-app)
 
 No  |   Name
 --- |   ---
-1   |   [REMOTE_NAME](https://github.com/ugiispoyo/Micro-Id/blob/master/README.md#remote_name)
-2   |   [REMOTE_PORT_APP_DEV](https://github.com/ugiispoyo/Micro-Id/blob/master/README.md#remote_port_app_dev)
-3   |   [REMOTE_PORT_APP_PROD](https://github.com/ugiispoyo/Micro-Id/blob/master/README.md#remote_port_app_prod)
-4   |   [REMOTE_ENDPOINT_DEV](https://github.com/ugiispoyo/Micro-Id/blob/master/README.md#remote_endpoint_dev)
-5   |   [REMOTE_ENDPOINT_PROD](https://github.com/ugiispoyo/Micro-Id/blob/master/README.md#remote_endpoint_prod)
-6   |   [REMOTE_FILE](https://github.com/ugiispoyo/Micro-Id/blob/master/README.md#remote_file)
+1   |   [REMOTE_NAME](https://github.com/my-microfrontend/create-my-microfrontend/blob/master/README.md#remote_name)
+2   |   [REMOTE_PORT_APP_DEV](https://github.com/my-microfrontend/create-my-microfrontend/blob/master/README.md#remote_port_app_dev)
+3   |   [REMOTE_PORT_APP_PROD](https://github.com/my-microfrontend/create-my-microfrontend/blob/master/README.md#remote_port_app_prod)
+4   |   [REMOTE_ENDPOINT_DEV](https://github.com/my-microfrontend/create-my-microfrontend/blob/master/README.md#remote_endpoint_dev)
+5   |   [REMOTE_ENDPOINT_PROD](https://github.com/my-microfrontend/create-my-microfrontend/blob/master/README.md#remote_endpoint_prod)
+6   |   [REMOTE_FILE](https://github.com/my-microfrontend/create-my-microfrontend/blob/master/README.md#remote_file)
 
 
 ===========================
@@ -326,7 +326,7 @@ npm start
 
 <h2>Report bugs</h2>
 
-##### [https://github.com/my-microfrontend/create-my-microfrontend/issues](https://github.com/ugiispoyo/Micro-Id/issues)
+##### [https://github.com/my-microfrontend/create-my-microfrontend/issues](https://github.com/my-microfrontend/create-my-microfrontend/issues)
 
 <br/>
 <br/>
