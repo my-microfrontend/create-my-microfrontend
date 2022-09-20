@@ -264,7 +264,9 @@ function init(pathNow) {
                 `"name": "${nameProject}"`
             );
             const updatePackage = JSON.parse(writePackage);
-            delete updatePackage.packages[""].bin;
+            if(updatePackage.packages) {
+                delete updatePackage.packages[""].bin;
+            }
             fs.writeFile(
                 path.join(directoryProject, "package-lock.json"),
                 JSON.stringify(updatePackage),
