@@ -13,7 +13,10 @@ function getEnvDev() {
     );
     let exposes = {};
     nameExposes.forEach((val, i) => {
-        exposes[dotenv[val]] = dotenv[fileExposes[i]];
+        exposes[dotenv[val]] =
+            dotenv.FRAMEWORK === "vue"
+                ? `${dotenv[fileExposes[i]]}.vue`
+                : dotenv[fileExposes[i]];
     });
 
     /* For get data remotes */
@@ -57,7 +60,10 @@ function getEnvProd() {
     );
     let exposes = {};
     nameExposes.forEach((val, i) => {
-        exposes[dotenv[val]] = dotenv[fileExposes[i]];
+        exposes[dotenv[val]] =
+            dotenv.FRAMEWORK === "vue"
+                ? `${dotenv[fileExposes[i]]}.vue`
+                : dotenv[fileExposes[i]];
     });
 
     /* For get data remotes */

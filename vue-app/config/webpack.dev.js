@@ -14,6 +14,10 @@ const configMFP = [
         exposes: devConf.exposes,
         remotes: devConf.remotes,
         shared: packageJson.dependencies,
+        library: {
+            type: "var",
+            name: ["containers", "containerName"],
+        },
     }),
 ];
 

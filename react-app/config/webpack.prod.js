@@ -45,7 +45,12 @@ const prodConfig = {
                 test: /\.css$/,
                 use: [
                     MiniCssExtractPlugin.loader, 
-                    'css-loader?url=false',
+                    {
+                        loader: "css-loader",
+                        options: {
+                            url: false,
+                        },
+                    }
                 ],
             },
         ]

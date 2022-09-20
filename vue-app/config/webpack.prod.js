@@ -19,6 +19,10 @@ const configMFP = [
         exposes: devConf.exposes,
         remotes: devConf.remotes,
         shared: packageJson.dependencies,
+        library: {
+            type: "var",
+            name: ["containers", "containerName"],
+        },
     }),
 ];
 
@@ -45,7 +49,12 @@ const prodConfig = {
                 test: /\.css$/,
                 use: [
                     MiniCssExtractPlugin.loader, 
-                    'css-loader?url=false',
+                    {
+                        loader: "css-loader",
+                        options: {
+                            url: false,
+                        },
+                    }
                 ],
             },
         ]
