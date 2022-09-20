@@ -4,7 +4,7 @@ const webpack = require("webpack");
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const ModuleFederationPlugin = require('webpack/lib/container/ModuleFederationPlugin');
+const { ModuleFederationPlugin } = require('webpack').container;
 const CopyPlugin = require("copy-webpack-plugin");
 const commonConfig = require('./webpack.common');
 const packageJson = require('../package.json');
@@ -73,14 +73,14 @@ const prodConfig = {
         minimize: true,
         minimizer: [
             new CssMinimizerPlugin(),
-            new TerserPlugin({
-                terserOptions: {
-                    format: {
-                        comments: false,
-                    },
-                },
-                extractComments: false,
-            }),
+            // new TerserPlugin({
+            //     terserOptions: {
+            //         format: {
+            //             comments: false,
+            //         },
+            //     },
+            //     extractComments: false,
+            // }),
         ],
         emitOnErrors: false,
         removeAvailableModules: false,

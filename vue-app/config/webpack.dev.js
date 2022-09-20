@@ -1,6 +1,6 @@
 const { merge } = require("webpack-merge");
 const path = require("path");
-const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
+const { ModuleFederationPlugin } = require('webpack').container;
 const commonConfig = require("./webpack.common.js");
 const packageJson = require("../package.json");
 const { getEnvDev } = require('./config');
@@ -14,10 +14,6 @@ const configMFP = [
         exposes: devConf.exposes,
         remotes: devConf.remotes,
         shared: packageJson.dependencies,
-        library: {
-            type: "var",
-            name: ["containers", "containerName"],
-        },
     }),
 ];
 

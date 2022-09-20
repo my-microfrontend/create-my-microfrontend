@@ -13,7 +13,7 @@ const __dirname = path.dirname(__filename);
 const validApp = ["--react", "--vue"];
 let appFramework = "";
 let directoryProject = "";
-const nameProject = process.argv[2] || "micro";
+const nameProject = process.argv[2].replace(/[`~!@#$%^&*()_|+\-=?;:'",.<>\{\}\[\]\\\/]/gi, '') || "micro";
 
 /* Run Command */
 function runCommand(command, param, typeStdio = "ignore") {
